@@ -70,13 +70,7 @@ function getTeamByName(teams, name) {
 }
 
 function mapStateToProps(state, ownProps) {
-  let team = {city: '', location: '', name: ''};
-
-  if (ownProps.match.params.teamName) {
-    const teamId = ownProps.match.params.teamName;
-    team = getTeamByName(state.teams, teamId);
-  }
-
+  let team = 'team';
   console.log(state)
   return {
     team: team,

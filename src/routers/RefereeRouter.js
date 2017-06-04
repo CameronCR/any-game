@@ -1,17 +1,17 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import TeamsAdmin from '../components/referee/teams/TeamsAdmin';
-import SportAdmin from '../components/referee/sports/SportAdmin';
+import Teams from '../components/referee/teams/TeamsListPreview';
+import Sports from '../components/referee/sports/Sports';
 
 const RefereeRouter = () => {
   return(
-      <div>
-        <Route path="/referee/sports" component={SportAdmin} />
-        <Route path="/referee/sport" component={SportAdmin} />
-        <Route path="/referee/sport/:sportName" component={SportAdmin} />
-        <Route path="/referee/teams" component={TeamsAdmin} />
-        <Route path="/referee/team" component={TeamsAdmin} />
-      </div>
+      <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+        <Route path="/referee/sports" component={Sports} />
+        <Route path="/referee/sport" component={Sports} />
+        <Route path="/referee/sport/:sportName" component={Sports} />
+        <Route path="/referee/teams" component={Teams} />
+        <Route path="/referee/team" component={Teams} />
+      </main>
   );
 };
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import AddTeam from '../referee/teams/TeamForm';
-import UserTeams from '../referee/teams/TeamList';
+import UserTeams from '../referee/teams/TeamsList';
 
 import * as teamActions from '../../actions/teams';
 

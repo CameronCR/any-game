@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
 
 import * as sportActions from '../../../actions/sports';
 
-import SportPreview from './SportsListPreview';
+import SportsListPreview from './SportsListPreview';
 
 class SportsList extends Component {
 
@@ -14,13 +13,12 @@ class SportsList extends Component {
   }
 
   sportListing(sport, index){
-    return <SportPreview sport={sport} key={index} />;
+    return <SportsListPreview sport={sport} key={index} />;
   }
 
   render() {
     return (
-        <div>
-          <h2>Sports</h2>
+        <div className="col-md-4">
           <div className="list-group">
             {this.props.sports.map(this.sportListing)}
           </div>
@@ -28,15 +26,6 @@ class SportsList extends Component {
     );
   }
 }
-
-SportList.propTypes = {
-  sports: PropTypes.array,
-  sportActions: PropTypes.object
-};
-
-SportList.defaultProps = {
-  sports: []
-};
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -51,4 +40,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SportsList);
-

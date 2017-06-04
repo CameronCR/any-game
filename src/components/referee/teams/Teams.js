@@ -3,16 +3,17 @@ import { Route } from 'react-router-dom'
 
 import SportsList from './SportsList';
 import SportFormManage from './SportFormManage';
-import NewSportModal from './NewSportModal';
+import SportModal from './SportModal';
 
 
-class SportAdmin extends Component {
+class Sports extends Component {
 
   render() {
     return (
         <div>
-          <h1>Teams Admin</h1>
-          <NewSportModal />
+          <h1>Sports Admin</h1>
+          <SportModal />
+          <br />
           <div>
             <Route path='/referee/sports' component={SportsList}/>
             <Route exact path='/referee/sport' component={SportFormManage} />
@@ -23,4 +24,4 @@ class SportAdmin extends Component {
   }
 }
 
-export default SportAdmin;
+export default Sports;

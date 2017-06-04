@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
 import TeamFormManage from './TeamFormManage';
-import TeamList from './TeamList';
+import TeamsList from './TeamsList';
 
 const TeamsAdmin = ({ match })=> {
 
@@ -10,7 +10,7 @@ const TeamsAdmin = ({ match })=> {
       <div>
         <h1>Teams Admin</h1>
         <div>
-          <Route path='/referee/teams' component={TeamList}/>
+          <Route path='/referee/teams' component={TeamsList}/>
           <Route exact path='/referee/team' component={TeamFormManage} />
           <Route path='/referee/team/:teamName' component={TeamFormManage} />
         </div>

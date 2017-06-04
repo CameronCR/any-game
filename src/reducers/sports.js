@@ -1,16 +1,15 @@
 import * as actionTypes from '../actions/actionTypes';
 
-export default function teamReducer(state = [], action) {
+export default function sports(state = [], action) {
   switch(action.type) {
-
-    case actionTypes.CREATE_SPORT_SUCCESS:
-      if (action.status) {
-        return state
-      }
-      break;
+    // case actionTypes.CREATE_SPORT_SUCCESS:
+    //   if (action.status) {
+    //     return state
+    //   }
+    //   break;
 
     case actionTypes.LOAD_SPORTS_SUCCESS:
-        return action.sports;
+      return action.sports;
 
     default:
       return state;

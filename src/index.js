@@ -6,7 +6,8 @@ import configureStore from './store/configureStore';
 
 import App from './components/App';
 
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../public/css/bootstrap.min.css';
+
 import './components/styles/dashboard.css';
 
 import {loadSports} from './actions/sports';
