@@ -11,8 +11,8 @@ class SportFormManage extends Component {
   constructor(props, context) {
     super(props);
 
-    this.onClickSave = this.onClickSave.bind(this);
     this.updateFormState = this.updateFormState.bind(this);
+    this.onClickSave = this.onClickSave.bind(this);
   }
 
   updateFormState(event) {
@@ -25,16 +25,15 @@ class SportFormManage extends Component {
 
   onClickSave(){
     console.log('Saved');
-
   }
 
   render() {
     return (
         <div>
           <SportForm
-          sport={this.props.sport}
-          onSave={this.onClickSave}
-          onChange={this.updateFormState}
+              sport={this.props.sport}
+              onSave={this.onClickSave}
+              onChange={this.updateFormState}
           />
         </div>
     );
@@ -43,7 +42,11 @@ class SportFormManage extends Component {
 
 
 function mapStateToProps(state, ownProps) {
+  let sport  = {
+    name: ''
+  };
   return {
+    sport: sport,
     sports: state.sports
   };
 }

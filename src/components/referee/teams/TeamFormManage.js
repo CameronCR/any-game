@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
 
 import TeamForm from './TeamForm';
 
@@ -9,20 +8,16 @@ import * as teamsActions from '../../../actions/teams';
 import * as sportActions from '../../../actions/sports';
 
 class TeamFormManage extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      team: Object.assign({}, props.team),
-      errors: {},
-      saving: false
-    };
 
-    this.updateCourseState = this.updateCourseState.bind(this);
-    this.saveCourse = this.saveCourse.bind(this);
+  constructor(props, context) {
+    super(props);
+
+    this.updateFormState = this.updateFormState.bind(this);
+    this.onClickSave = this.onClickSave.bind(this);
   }
 
 
-  updateCourseState(event) {
+  updateFormState(event) {
     const field = event.target.name;
     let team = this.state.team;
     team[field] = event.target.value;
@@ -30,15 +25,8 @@ class TeamFormManage extends Component {
   }
 
 
-  componentDidMount(){
-    this.props.sportActions.loadSports();
-  }
-
-
-  saveCourse(event) {
-    event.preventDefault();
-    this.setState({saving: true});
-    this.props.teamActions.saveTeam(this.state.team);
+  onClickSave(){
+    console.log('Saved');
   }
 
   render() {
@@ -46,36 +34,26 @@ class TeamFormManage extends Component {
         <div className="col-md-4">
           <TeamForm
               team={this.props.team}
-              allSports={this.props.sports}
-              onSave={this.saveCourse}
-              onChange={this.updateCourseState}
-              saving={this.state.saving}
-              errors={this.state.errors}
+              onSave={this.onClickSave}
+              onChange={this.updateFormState}
           />
         </div>
     );
   }
 }
 
-TeamFormManage.propTypes = {
-  teams: PropTypes.array,
-  teamActions: PropTypes.object
-};
-
-
-function getTeamByName(teams, name) {
-  const team = teams.filter(team => team.name == name);
-  if (team) return team[0];
-  return null;
-}
 
 function mapStateToProps(state, ownProps) {
-  let team = 'team';
-  console.log(state)
+  console.log(this.props)
+  let team = {
+    name: '',
+    location: '',
+    city: ''
+  };
   return {
     team: team,
     sports: state.sports,
-    currentlyLoading: state.currentlyLoading
+    teams: state.teams
   };
 }
 

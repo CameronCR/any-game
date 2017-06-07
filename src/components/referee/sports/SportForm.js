@@ -8,7 +8,7 @@ const SportForm = ({sport, onChange}) => {
           <input type="text"
                  className="form-control"
                  onChange={onChange}
-                 value={sport} />
+                 value={sport.name} />
         </div>
       </form>
   )

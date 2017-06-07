@@ -1,7 +1,7 @@
 import React from 'react';
 import SelectInput from '../../common/SelectInput';
 
-const TeamForm = ({team, allSports, onSave, onChange, saving, errors}) => {
+const TeamForm = ({team, onChange}) => {
   return (
       <form>
         <div className="form-group">
@@ -23,19 +23,7 @@ const TeamForm = ({team, allSports, onSave, onChange, saving, errors}) => {
               className="form-control"
               onChange={onChange}
               value={team.city} />
-          <SelectInput
-              name="team-selector"
-              label="Sport"
-              value={team.sport}
-              defaultOption="Select a Team"
-              options={allSports}
-              onChange={onChange}
-              error={errors.sport}/>
         </div>
-        <input type="submit"
-               value={saving ? 'Adding...' : 'Add'}
-               className="btn btn-lg btn-default"
-               onClick={onSave} />
       </form>
   )
 };
