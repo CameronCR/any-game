@@ -28,7 +28,7 @@ export function saveTeam(team) {
 export function updateTeam() {
   return function (dispatch) {
 
-  }
+  };
 }
 
 
@@ -43,12 +43,12 @@ export function createTeamSuccess(status) {
   return {
     type: actionTypes.CREATE_TEAM_SUCCESS,
     status
-  }
+  };
 }
 
 export function updateTeamSuccess(status) {
   return {
     type: actionTypes.UPDATE_SPORT_SUCCESS,
     status
-  }
+  };
 }

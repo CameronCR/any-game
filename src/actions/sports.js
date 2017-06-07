@@ -35,5 +35,5 @@ export function loadSportsSuccess(sports) {
   return {
     type: actionTypes.LOAD_SPORTS_SUCCESS,
     sports
-  }
+  };
 }

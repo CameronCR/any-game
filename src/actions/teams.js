@@ -4,7 +4,6 @@ import * as firebase from '../lib/firebase';
 import * as loading from './loading';
 
 export function loadTeams() {
-
   return function(dispatch) {
     firebase.db.ref('teams').on('value', function (snapshot) {
       dispatch(loadTeamsSuccess(Object.values(snapshot.val())));
