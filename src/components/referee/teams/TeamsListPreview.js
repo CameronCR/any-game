@@ -1,21 +1,13 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import TeamFormManage from './TeamFormManage';
-import TeamsList from './TeamsList';
-
-const TeamsAdmin = ({ match })=> {
-
+const TeamsListPreview = ({ team }) => {
+  let link = '/referee/sport/' + team.name;
   return (
-      <div>
-        <h1>Teams Admin</h1>
-        <div>
-          <Route path='/referee/teams' component={TeamsList}/>
-          <Route exact path='/referee/team' component={TeamFormManage} />
-          <Route path='/referee/team/:teamName' component={TeamFormManage} />
-        </div>
-      </div>
+      <Link to={link} className="list-group-item">
+        {team.name}
+      </Link>
   );
 };
 
-export default TeamsAdmin;
+export default TeamsListPreview;

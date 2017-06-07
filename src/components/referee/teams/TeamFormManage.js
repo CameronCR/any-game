@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import TeamForm from './TeamForm';
 
-import * as teamsActions from '../../../actions/teams';
+import * as teamActions from '../../../actions/teams';
 import * as sportActions from '../../../actions/sports';
 
 class TeamFormManage extends Component {
@@ -31,7 +31,7 @@ class TeamFormManage extends Component {
 
   render() {
     return (
-        <div className="col-md-4">
+        <div className="col-md-8">
           <TeamForm
               team={this.props.team}
               onSave={this.onClickSave}
@@ -47,20 +47,17 @@ function mapStateToProps(state, ownProps) {
   console.log(this.props)
   let team = {
     name: '',
-    location: '',
-    city: ''
+    location: ''
   };
   return {
     team: team,
-    sports: state.sports,
     teams: state.teams
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    teamActions: bindActionCreators(teamsActions, dispatch),
-    sportActions: bindActionCreators(sportActions, dispatch)
+    teamActions: bindActionCreators(teamActions, dispatch),
   };
 }
 

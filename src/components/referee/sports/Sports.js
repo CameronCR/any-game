@@ -15,9 +15,9 @@ class Sports extends Component {
           <SportModal />
           <br />
           <div>
-            <Route path='/referee/sports' component={SportsList}/>
-            <Route exact path='/referee/sport' component={SportFormManage} />
-            <Route path='/referee/sport/:sportName' component={SportFormManage} />
+            <Route path="/referee/sports" component={SportsList}/>
+            <Route exact path="/referee/sport" component={SportFormManage} />
+            <Route path="/referee/sport/:sportName" component={SportFormManage} />
           </div>
         </div>
     );

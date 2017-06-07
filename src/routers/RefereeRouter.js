@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Teams from '../components/referee/teams/TeamsListPreview';
+import Teams from '../components/referee/teams/Teams';
 import Sports from '../components/referee/sports/Sports';
 
 const RefereeRouter = () => {

@@ -17,12 +17,6 @@ const TeamForm = ({team, onChange}) => {
               className="form-control"
               onChange={onChange}
               value={team.location} />
-          <label>City</label>
-          <input
-              type="text"
-              className="form-control"
-              onChange={onChange}
-              value={team.city} />
         </div>
       </form>
   )

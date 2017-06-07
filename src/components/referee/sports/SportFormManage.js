@@ -29,7 +29,7 @@ class SportFormManage extends Component {
 
   render() {
     return (
-        <div>
+        <div className="col-md-8">
           <SportForm
               sport={this.props.sport}
               onSave={this.onClickSave}
