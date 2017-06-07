@@ -28,6 +28,8 @@ class SportFormManage extends Component {
   }
 
   render() {
+    console.log(this.props)
+
     return (
         <div className="col-md-8">
           <SportForm

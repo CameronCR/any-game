@@ -11,6 +11,7 @@ const RefereeRouter = () => {
         <Route path="/referee/sport/:sportName" component={Sports} />
         <Route path="/referee/teams" component={Teams} />
         <Route path="/referee/team" component={Teams} />
+        <Route path="/referee/team/:teamName" component={Teams} />
       </main>
   );
 };

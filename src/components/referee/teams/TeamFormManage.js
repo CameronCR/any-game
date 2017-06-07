@@ -11,53 +11,55 @@ class TeamFormManage extends Component {
 
   constructor(props, context) {
     super(props);
+    this.state = {
+      team: {
+        name: '',
+        location: '',
+        city: '',
+        sport: ''
+      }
+    };
 
     this.updateFormState = this.updateFormState.bind(this);
     this.onClickSave = this.onClickSave.bind(this);
   }
 
-
   updateFormState(event) {
     const field = event.target.name;
     let team = this.state.team;
     team[field] = event.target.value;
-    return this.setState({team: team});
+    this.setState({team: team});
   }
 
-
   onClickSave(){
-    console.log('Saved');
+    console.log(this.state.team);
   }
 
   render() {
     return (
         <div className="col-md-8">
           <TeamForm
-              team={this.props.team}
-              onSave={this.onClickSave}
+              team={this.state.team}
               onChange={this.updateFormState}
+              allSports={this.props.sports}
           />
+          <button onClick={this.onClickSave}>go</button>
         </div>
     );
   }
 }
 
 
-function mapStateToProps(state, ownProps) {
-  console.log(this.props)
-  let team = {
-    name: '',
-    location: ''
-  };
+function mapStateToProps(state) {
   return {
-    team: team,
-    teams: state.teams
+    sports: state.sports
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     teamActions: bindActionCreators(teamActions, dispatch),
+    sportActions: bindActionCreators(sportActions, dispatch)
   };
 }
 
