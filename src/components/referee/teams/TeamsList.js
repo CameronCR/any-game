@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import * as teamActions from '../../../actions/teams';
 
-import TeamPreview from './TeamPreview';
+import TeamsListPreview from './TeamsListPreview';
 
 class TeamList extends Component {
 
@@ -16,7 +16,7 @@ class TeamList extends Component {
   }
 
   teamListing(team, index){
-    return <TeamPreview team={team} key={index} />;
+    return <TeamsListPreview team={team} key={index} />;
   }
 
   render() {
@@ -32,15 +32,6 @@ class TeamList extends Component {
     );
   }
 }
-
-TeamList.propTypes = {
-  teams: PropTypes.array,
-  teamActions: PropTypes.object
-};
-
-TeamList.defaultProps = {
-  teams: []
-};
 
 function mapStateToProps(state, ownProps) {
   return {

@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
+import { Route } from 'react-router-dom';
 
-import SportsList from './SportsList';
-import SportFormManage from './SportFormManage';
-import SportModal from './SportModal';
+import TeamsList from './TeamsList';
+import TeamFormManage from './TeamFormManage';
+import TeamModal from './TeamModal';
 
 
-class Sports extends Component {
+class Teams extends Component {
 
   render() {
     return (
         <div>
-          <h1>Sports Admin</h1>
-          <SportModal />
+          <h1>Teams Admin</h1>
+          <TeamModal />
           <br />
           <div>
-            <Route path='/referee/sports' component={SportsList}/>
-            <Route exact path='/referee/sport' component={SportFormManage} />
-            <Route path='/referee/sport/:sportName' component={SportFormManage} />
+            <Route path="/referee/teams" component={TeamsList}/>
+            <Route exact path="/referee/team" component={TeamFormManage} />
+            <Route path="/referee/team/:teamName" component={TeamFormManage} />
           </div>
         </div>
     );
   }
 }
 
-export default Sports;
+export default Teams;
