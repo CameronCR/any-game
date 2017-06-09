@@ -18,11 +18,11 @@ class TeamList extends Component {
 
   render() {
     return (
-        <div className="col-md-4">
-          <div className="list-group">
-            {this.props.teams.map(this.teamListing)}
-          </div>
+      <div className="col-md-4">
+        <div className="list-group">
+          {this.props.teams.map(this.teamListing)}
         </div>
+      </div>
     );
   }
 }

@@ -18,11 +18,11 @@ class SportsList extends Component {
 
   render() {
     return (
-        <div className="col-md-4">
-          <div className="list-group">
-            {this.props.sports.map(this.sportListing)}
-          </div>
+      <div className="col-md-4">
+        <div className="list-group">
+          {this.props.sports.map(this.sportListing)}
         </div>
+      </div>
     );
   }
 }

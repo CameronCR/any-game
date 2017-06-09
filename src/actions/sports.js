@@ -1,26 +1,37 @@
+import config from '../lib/config';
 import * as actionTypes from './actionTypes';
 import * as firebase from '../lib/firebase';
 
+import sports from '../lib/data/sports';
+
 export function loadSports() {
   return function(dispatch) {
-    firebase.db.ref('sports').on('value', function (snapshot) {
-      dispatch(loadSportsSuccess(Object.values(snapshot.val())));
-    });
+      if (config.isOffline) {
+          dispatch(loadSportsSuccess(Object.values(sports)));
+      } else {
+          firebase.db.ref('sports').on('value', function (snapshot) {
+              dispatch(loadSportsSuccess(Object.values(snapshot.val())));
+          });
+      }
   };
 }
 
 export function saveSport(sport) {
   return function(dispatch) {
-    firebase.db.ref('sports/').push({
-      name: sport.name,
-      openingDate: sport.openingDate
-    }, function(error) {
-      if (error)
-        dispatch(createSportSuccess(false));
-      else {
-        dispatch(createSportSuccess(true));
+      if (config.isOffline) {
+          dispatch(createSportSuccess(false));
+      } else {
+          firebase.db.ref('sports/').push({
+              name: sport.name,
+              openingDate: sport.openingDate
+          }, function(error) {
+              if (error)
+                  dispatch(createSportSuccess(false));
+              else {
+                  dispatch(createSportSuccess(true));
+              }
+          });
       }
-    });
   };
 }
 

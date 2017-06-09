@@ -12,7 +12,7 @@ export function loadTeams() {
 export function saveTeam(team) {
   return function(dispatch) {
     firebase.db.ref('teams/').push({
-      name: team.name,
+      name: team.name
     }, function(error) {
       if (error)
         dispatch(createTeamSuccess(false));

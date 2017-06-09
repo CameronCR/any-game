@@ -9,4 +9,4 @@ function navLink(link, text, currentPath){
   }
 }
 
-export default navLink
+export default navLink;

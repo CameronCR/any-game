@@ -5,7 +5,6 @@ import TeamsList from './TeamsList';
 import TeamFormManage from './TeamFormManage';
 import TeamModal from './TeamModal';
 
-
 class Teams extends Component {
 
   render() {

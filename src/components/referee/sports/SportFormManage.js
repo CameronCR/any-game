@@ -28,20 +28,16 @@ class SportFormManage extends Component {
   }
 
   render() {
-    console.log(this.props)
-
     return (
-        <div className="col-md-8">
-          <SportForm
-              sport={this.props.sport}
-              onSave={this.onClickSave}
-              onChange={this.updateFormState}
-          />
-        </div>
+      <div className="col-md-8">
+        <SportForm
+          sport={this.props.sport}
+          onSave={this.onClickSave}
+          onChange={this.updateFormState} />
+      </div>
     );
   }
 }
-
 
 function mapStateToProps(state, ownProps) {
   let sport  = {

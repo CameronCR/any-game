@@ -5,7 +5,7 @@ import TeamFormManage from './TeamFormManage';
 class TeamModal extends Component {
 
   onClick() {
-    this.child.onClickSave()
+    this.child.onClickSave();
   }
 
   render() {
