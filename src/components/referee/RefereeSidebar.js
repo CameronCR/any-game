@@ -7,10 +7,10 @@ class RefereeSidebar extends Component {
     return(
       <nav className="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
         <ul className="nav nav-pills flex-column">
-          {navLink('/referee/teams', 'Teams', this.props.path)}
+          {navLink('/referee/teams', 'Teams')}
         </ul>
         <ul className="nav nav-pills flex-column">
-          {navLink('/referee/sports', 'Sports', this.props.path)}
+          {navLink('/referee/sports', 'Sports')}
         </ul>
       </nav>
     );

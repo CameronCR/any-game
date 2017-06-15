@@ -10,41 +10,28 @@ class SportFormManage extends Component {
 
   constructor(props, context) {
     super(props);
-
-    this.updateFormState = this.updateFormState.bind(this);
-    this.onClickSave = this.onClickSave.bind(this);
-  }
-
-  updateFormState(event) {
-    const field = event.target.name;
-    let sport = this.state.sport;
-    sport[field] = event.target.value;
-    return this.setState({sport: sport});
-  }
-
-
-  onClickSave(){
-    console.log('Saved');
   }
 
   render() {
     return (
       <div className="col-md-8">
-        <SportForm
-          sport={this.props.sport}
-          onSave={this.onClickSave}
-          onChange={this.updateFormState} />
+        <form>
+          <div className="form-group">
+            <label>Sport Name</label>
+            <input type="text"
+                   name="name"
+                   className="form-control"
+                   onChange={this.props.updateForm}
+                   value={this.props.sport.name} />
+          </div>
+        </form>
       </div>
     );
   }
 }
 
 function mapStateToProps(state, ownProps) {
-  let sport  = {
-    name: ''
-  };
   return {
-    sport: sport,
     sports: state.sports
   };
 }

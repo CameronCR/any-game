@@ -1,12 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
-function navLink(link, text, currentPath){
-  if (link === currentPath) {
-    return <li className="nav-item"><Link className="nav-link active" to={link}>{text}</Link></li>;
-  } else {
-    return <li className="nav-item"><Link className="nav-link" to={link}>{text}</Link></li>;
-  }
+
+function navLink(link, text){
+    return <li className="nav-item"><NavLink className="nav-link" to={link}>{text}</NavLink></li>;
 }
 
 export default navLink;

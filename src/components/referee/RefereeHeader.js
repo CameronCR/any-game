@@ -1,9 +1,8 @@
-import React, { Component} from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
 import navLink from '../common/navLink';
 
-const Header = ( path ) => {
+const Header = () => {
   return(
     <nav className="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
       <button className="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,8 +11,8 @@ const Header = ( path ) => {
       <a className="navbar-brand" href="/">Any Game</a>
       <div className="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul className="navbar-nav mr-auto">
-          {navLink('/', 'Dashboard', path)}
-          {navLink('/referee', 'Settings', path)}
+          {navLink('/', 'Dashboard')}
+          {navLink('/referee', 'Settings')}
           <li className="nav-item">
             <a className="nav-link" href="#">Profile</a>
           </li>

@@ -13,7 +13,7 @@ class RefereeConsole extends Component {
   render() {
     return (
       <div>
-        <RefereeHeader path={this.props.location.pathname} />
+        <RefereeHeader />
         <div className="container-fluid">
           <div className="row">
             <RefereeSidebar path={this.props.location.pathname} />

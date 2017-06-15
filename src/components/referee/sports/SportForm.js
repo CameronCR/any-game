@@ -6,6 +6,7 @@ const SportForm = ({sport, onChange}) => {
       <div className="form-group">
         <label>Sport Name</label>
         <input type="text"
+               name="name"
                className="form-control"
                onChange={onChange}
                value={sport.name} />
