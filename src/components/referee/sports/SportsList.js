@@ -32,7 +32,6 @@ class SportsList extends Component {
   }
 
   render() {
-
     return (
       <div className="col-md-4">
         <ul className="list-group">
