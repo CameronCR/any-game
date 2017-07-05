@@ -17,6 +17,7 @@ const store = configureStore();
 store.dispatch(loadSports());
 store.dispatch(loadTeams());
 
+
 render (
     <Provider store={store}>
       <App />

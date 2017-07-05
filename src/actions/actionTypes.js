@@ -8,3 +8,6 @@ export const CREATE_SPORT_SUCCESS = 'CREATE_SPORT_SUCCESS';
 
 //Loading
 export const CURRENTLY_LOADING = 'CURRENTLY_LOADING';
+
+//Users
+export const ACTIVE_USERS = 'ACTIVE_USERS';

@@ -18,12 +18,12 @@ export function loadSports() {
 
 export function saveSport(sport) {
   return function(dispatch) {
-      if (config.isOffline) {
+      if (config.isOffline || !sport.name) {
           dispatch(createSportSuccess(false));
       } else {
           firebase.db.ref('sports/').push({
-              name: sport.name,
-              openingDate: sport.openingDate
+              name: sport.name
+              // openingDate: sport.openingDate
           }, function(error) {
               if (error)
                   dispatch(createSportSuccess(false));

@@ -43,7 +43,7 @@ class TeamFormManage extends Component {
               onChange={this.updateFormState}
               allSports={this.props.sports}
           />
-          <button onClick={this.onClickSave}>go</button>
+        
         </div>
     );
   }

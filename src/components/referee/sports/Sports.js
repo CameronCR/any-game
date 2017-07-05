@@ -5,14 +5,17 @@ import { bindActionCreators } from 'redux';
 import * as sportActions from '../../../actions/sports';
 
 import SportsList from './SportsList';
+import SportModal from './SportModal';
 
 class Sports extends Component {
 
   constructor(props) {
+    let value = new Date().toISOString();
     super(props);
     this.state = {
       sport: {
-        name: ''
+        name: '',
+        openingDate: value
       },
       modalTitle: 'Add a new Sport'
     };
@@ -30,7 +33,6 @@ class Sports extends Component {
     this.setState({sport: sport});
   }
 
-
   setSport(sport){
     let title = 'Edit ' + sport;
     this.setState({
@@ -38,7 +40,6 @@ class Sports extends Component {
         name: sport
       },
       modalTitle: title
-
     });
   }
 
@@ -52,7 +53,7 @@ class Sports extends Component {
   }
 
   saveSport(){
-    console.log('Saving Sport: ' + this.state.sport.name);
+    // console.log('Saving Sport: ' + this.state.sport.name);
     this.props.sportActions.saveSport(this.state.sport);
   }
 
@@ -73,23 +74,10 @@ class Sports extends Component {
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div className="modal-body">
-                  <div className="col-md-8">
-                    <form>
-                      <div className="form-group">
-                        <label>Sport Name</label>
-                        <input type="text"
-                               name="name"
-                               className="form-control"
-                               onChange={this.updateFormState}
-                               value={this.state.sport.name} />
-                      </div>
-                    </form>
-                  </div>
-                </div>
+                <SportModal changeInput={this.updateFormState} value={this.state.sport} />
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" className="btn btn-primary" onClick={this.saveSport}>Save</button>
+                  <button type="button" className="btn btn-primary" onClick={this.saveSport} data-dismiss="modal">Save</button>
                 </div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 let config = {
   isProduction: false,
-  isOffline: true
+  isOffline: false
 };
 
 
