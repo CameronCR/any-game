@@ -9,10 +9,17 @@ export function loadUsers(){
   };
 }
 
-export function createUser(email, password){
+export function createUser(email, password, user){
   return function(dispatch) {
     firebase.auth.createUserWithEmailAndPassword(email, password).catch((error) => {
       console.log(error.message)
+    });
+    firebase.db.ref('users/').push({
+      settings: {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: email
+      }
     });
   };
 }

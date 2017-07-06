@@ -42,14 +42,16 @@ class Users extends Component {
       user: {
         firstName: user.settings.firstName,
         lastName: user.settings.lastName,
-        email: user.settings.email
+        email: user.settings.email,
+        password: ''
       },
       modalTitle: title
     });
   }
 
   createUser(){
-    this.props.userActions.createUser(this.state.user.email, this.state.user.password);
+    const userInput = this.state.user;
+    this.props.userActions.createUser(this.state.user.email, this.state.user.password, userInput);
   }
 
   clearUser(){

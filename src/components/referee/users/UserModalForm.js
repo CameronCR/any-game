@@ -6,17 +6,17 @@ function UserModalForm(props) {
         <div className="form-group">
           <label>Name</label>
           <input type="text"
-                 name="firstName"
-                 className="form-control"
-                 value={props.user.firstName}
-                 onChange={props.onChange}
-                 placeholder="First Name"/>
+            name="firstName"
+            className="form-control"
+            value={props.user.firstName}
+            onChange={props.onChange}
+            placeholder="First Name"/>
            <input type="text"
-                  name="lastName"
-                  className="form-control"
-                  value={props.user.lastName}
-                  onChange={props.onChange}
-                  placeholder="Last Name" />
+            name="lastName"
+            className="form-control"
+            value={props.user.lastName}
+            onChange={props.onChange}
+            placeholder="Last Name" />
         </div>
         <div>
           <label>Email</label>
@@ -25,16 +25,15 @@ function UserModalForm(props) {
             className="form-control"
             value={props.user.email}
             onChange={props.onChange}
-            placeholder="Email"
-                />
+            placeholder="Email" />
         </div>
         <div className="form-group">
           <label>Password</label>
           <input type="password"
-                 name="password"
-                 className="form-control"
-                 value={props.user.password}
-               onChange={props.onChange} />
+            name="password"
+            className="form-control"
+            value={props.user.password}
+            onChange={props.onChange} />
         </div>
       </form>
     );
