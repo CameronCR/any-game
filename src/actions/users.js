@@ -10,7 +10,6 @@ export function loadUsers(){
 }
 
 export function loadUsersSuccess(users){
-  console.log(users);
   return {
     type: actionTypes.ACTIVE_USERS,
     users
