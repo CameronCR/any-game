@@ -6,12 +6,9 @@ import * as userActions from '../../../actions/users';
 
 class UsersList extends Component {
 
-  handleUserClick(user){
-    this.props.setUser(user);
-  }
-
   userListing(user, index) {
-    return <UsersListPreview user={user} key={index} handleClick={() => {this.handleUserClick(user)}} />;
+    const handleUserClick = () => this.props.setUser(user);
+    return <UsersListPreview user={user} key={index} handleClick={handleUserClick} />;
   }
 
   render(){
