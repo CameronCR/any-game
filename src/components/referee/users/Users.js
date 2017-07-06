@@ -18,6 +18,7 @@ class Users extends Component {
       modalTitle: 'Add a new User'
     };
     this.setUser = this.setUser.bind(this);
+    this.clearUser = this.clearUser.bind(this);
   }
 
   componentWillMount(){
@@ -25,9 +26,13 @@ class Users extends Component {
   }
 
   setUser(user){
-    let title = 'Edit ' + user.firstName;
+    let title = 'Edit ' + user.settings.firstName;
     this.setState({
-      user: user
+      user: {
+        firstName: user.settings.firstName,
+        lastName: user.settings.lastName
+      },
+      modalTitle: title
     });
   }
 
@@ -36,8 +41,9 @@ class Users extends Component {
       user: {
         firstName: '',
         lastName: ''
-      }
-    })
+      },
+      modalTitle: 'Add a new User'
+    });
   }
 
   render(){
@@ -47,7 +53,7 @@ class Users extends Component {
         <button className="btn btn-outline-primary" data-toggle="modal" data-target="#userModal" onClick={this.clearUser}>
           New User
         </button>
-        <UserModal user={this.state.user}/>
+        <UserModal user={this.state.user} modalTitle={this.state.modalTitle}/>
         <br />
         <UsersList users={this.props.users} setUser={this.setUser} />
       </div>
