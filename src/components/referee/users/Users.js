@@ -70,6 +70,7 @@ class Users extends Component {
     return(
       <div>
         <h1>Users Admin</h1>
+
         <button className="btn btn-outline-primary" data-toggle="modal" data-target="#userModal" onClick={this.clearUser}>
           New User
         </button>

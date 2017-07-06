@@ -12,7 +12,7 @@ export function loadUsers(){
 export function createUser(email, password, user){
   return function(dispatch) {
     firebase.auth.createUserWithEmailAndPassword(email, password).catch((error) => {
-      console.log(error.message)
+      dispatch(handleError(error.message));
     });
     firebase.db.ref('users/').push({
       settings: {
@@ -21,6 +21,13 @@ export function createUser(email, password, user){
         email: email
       }
     });
+  };
+}
+
+export function handleError(error){
+  return {
+    type: actionTypes.USER_ERROR,
+    error
   };
 }
 
