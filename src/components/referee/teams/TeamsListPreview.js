@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const TeamsListPreview = ({ team }) => {
-  let link = '/referee/sport/' + team.name;
+function TeamsListPreview(props) {
   return (
-    <Link to={link} className="list-group-item">
-      {team.name}
-    </Link>
+    <li onClick={props.handleClick} className="list-group-item" data-toggle="modal" data-target="#teamModal">
+      {props.team.name}
+    </li>
   );
-};
+}
 
 export default TeamsListPreview;

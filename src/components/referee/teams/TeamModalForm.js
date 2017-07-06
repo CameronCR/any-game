@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TeamForm = ({team, onChange, allSports}) => {
+function TeamModalForm(props) {
   return (
     <form>
       <div className="form-group">
@@ -8,27 +8,27 @@ const TeamForm = ({team, onChange, allSports}) => {
         <input name="name"
                type="text"
                className="form-control"
-               onChange={onChange}
-               value={team.name} />
+               onChange={props.onChange}
+               value={props.team.name} />
         <label>Location</label>
         <input name="location"
                type="text"
                className="form-control"
-               onChange={onChange}
-               value={team.location} />
+               onChange={props.onChange}
+               value={props.team.location} />
         <label>City</label>
         <input name="city"
                type="text"
                className="form-control"
-               onChange={onChange}
-               value={team.city} />
+               onChange={props.onChange}
+               value={props.team.city} />
         <label>Sport</label>
         <select name="sport"
                 className="form-control"
-                value={team.sport}
-                onChange={onChange}>
+                onChange={props.onChange}
+                value={props.team.sport} >
           <option value="">Select a Sport</option>
-          {allSports.map((option) => {
+          {props.sports.map((option) => {
             return <option key={option.name} value={option.name}>{option.name}</option>;
           })}
         </select>
@@ -37,4 +37,4 @@ const TeamForm = ({team, onChange, allSports}) => {
   );
 };
 
-export default TeamForm;
+export default TeamModalForm;

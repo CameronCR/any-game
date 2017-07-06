@@ -15,7 +15,6 @@ import { loadTeams } from './actions/teams';
 
 const store = configureStore();
 store.dispatch(loadSports());
-store.dispatch(loadTeams());
 
 
 render (

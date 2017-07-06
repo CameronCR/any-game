@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import * as userActions from '../../../actions/users';
+
 import UsersList from './UsersList';
 import UserModal from './UserModal';
-
-import * as userActions from '../../../actions/users';
 
 class Users extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class Users extends Component {
     this.updateFormState = this.updateFormState.bind(this);
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.props.userActions.loadUsers();
   }
 
@@ -36,7 +36,7 @@ class Users extends Component {
     this.setState({user: user});
   }
 
-  setUser(user){
+  setUser(user) {
     let title = 'Edit ' + user.settings.firstName;
     this.setState({
       user: {
@@ -49,12 +49,12 @@ class Users extends Component {
     });
   }
 
-  createUser(){
+  createUser() {
     const userInput = this.state.user;
     this.props.userActions.createUser(this.state.user.email, this.state.user.password, userInput);
   }
 
-  clearUser(){
+  clearUser() {
     this.setState({
       user: {
         firstName: '',
@@ -70,13 +70,12 @@ class Users extends Component {
     return(
       <div>
         <h1>Users Admin</h1>
-
         <button className="btn btn-outline-primary" data-toggle="modal" data-target="#userModal" onClick={this.clearUser}>
           New User
         </button>
-        <UserModal user={this.state.user} modalTitle={this.state.modalTitle} saveButton={this.createUser} onChange={this.updateFormState}/>
+        <UserModal user={this.state.user} modalTitle={this.state.modalTitle} saveButton={this.createUser} onChange={this.updateFormState} />
         <br />
-        <UsersList users={this.props.users} setUser={this.setUser}/>
+        <UsersList users={this.props.users} setUser={this.setUser} />
       </div>
     );
   }

@@ -1,47 +1,94 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as teamActions from '../../../actions/teams';
 
 import TeamsList from './TeamsList';
-import TeamFormManage from './TeamFormManage';
 import TeamModal from './TeamModal';
 
 class Teams extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      team: {
+        name: '',
+        location: '',
+        city: '',
+        sport: ''
+      },
+      modalTitle: 'Add a new Team'
+    };
+    this.updateFormState = this.updateFormState.bind(this);
+    this.setTeam = this.setTeam.bind(this);
+    this.createTeam = this.createTeam.bind(this);
+    this.clearTeam = this.clearTeam.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.teamActions.loadTeams();
+  }
+
+  updateFormState() {
+    const field = event.target.name;
+    let team = this.state.team;
+    team[field] = event.target.value;
+    this.setState({team: team});
+  }
+
+  setTeam(team) {
+    let title = 'Edit ' + team.name;
+    this.setState({
+      team: team,
+      modalTitle: title
+    });
+  }
+
+  createTeam() {
+    const userInput = this.state.team;
+    this.props.teamActions.createTeam(userInput);
+  }
+
+  clearTeam() {
+    this.setState({
+      team: {
+        name: '',
+        location: '',
+        city: '',
+        sport: ''
+      },
+      modalTitle: 'Add a new Team'
+    });
+  }
 
   render() {
     return (
         <div>
           <h1>Teams Admin</h1>
-          <div>
-            <button className="btn btn-outline-primary" data-toggle="modal" data-target="#newSportModal">
-              New Team
-            </button>
-            <div className="modal fade" id="newSportModal" role="dialog" aria-labelledby="newSportModalLabel" aria-hidden="true">
-              <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="newSportModalLabel">Add a New Team</h5>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div className="modal-body">
-                    <TeamFormManage />
-                  </div>
-                  <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" className="btn btn-primary" onClick={this.onClick}>Save</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <button className="btn btn-outline-primary" data-toggle="modal" data-target="#teamModal" onClick={this.clearTeam}>
+            New Team
+          </button>
+          <TeamModal team={this.state.team} modalTitle={this.state.modalTitle} saveButton={this.createTeam} onChange={this.updateFormState} sports={this.props.sports}/>
           <br />
-          <div>
-            <TeamsList />
-          </div>
+          <TeamsList teams={this.props.teams} setTeam={this.setTeam} />
         </div>
     );
   }
 }
 
-export default Teams;
+
+function mapStateToProps(state, ownProps) {
+  return {
+    teams: state.teams,
+    sports: state.sports
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    teamActions: bindActionCreators(teamActions, dispatch)
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Teams);
