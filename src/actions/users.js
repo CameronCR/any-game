@@ -9,6 +9,14 @@ export function loadUsers(){
   };
 }
 
+export function createUser(email, password){
+  return function(dispatch) {
+    firebase.auth.createUserWithEmailAndPassword(email, password).catch((error) => {
+      console.log(error.message)
+    });
+  };
+}
+
 export function loadUsersSuccess(users){
   return {
     type: actionTypes.ACTIVE_USERS,

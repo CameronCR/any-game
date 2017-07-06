@@ -13,16 +13,27 @@ class Users extends Component {
     this.state = {
       user: {
         firstName: '',
-        lastName: ''
+        lastName: '',
+        email: '',
+        password: ''
       },
       modalTitle: 'Add a new User'
     };
     this.setUser = this.setUser.bind(this);
     this.clearUser = this.clearUser.bind(this);
+    this.createUser = this.createUser.bind(this);
+    this.updateFormState = this.updateFormState.bind(this);
   }
 
   componentWillMount(){
     this.props.userActions.loadUsers();
+  }
+
+  updateFormState(event) {
+    const field = event.target.name;
+    let user = this.state.user;
+    user[field] = event.target.value;
+    this.setState({user: user});
   }
 
   setUser(user){
@@ -30,17 +41,24 @@ class Users extends Component {
     this.setState({
       user: {
         firstName: user.settings.firstName,
-        lastName: user.settings.lastName
+        lastName: user.settings.lastName,
+        email: user.settings.email
       },
       modalTitle: title
     });
+  }
+
+  createUser(){
+    this.props.userActions.createUser(this.state.user.email, this.state.user.password);
   }
 
   clearUser(){
     this.setState({
       user: {
         firstName: '',
-        lastName: ''
+        lastName: '',
+        email: '',
+        password: ''
       },
       modalTitle: 'Add a new User'
     });
@@ -53,9 +71,9 @@ class Users extends Component {
         <button className="btn btn-outline-primary" data-toggle="modal" data-target="#userModal" onClick={this.clearUser}>
           New User
         </button>
-        <UserModal user={this.state.user} modalTitle={this.state.modalTitle}/>
+        <UserModal user={this.state.user} modalTitle={this.state.modalTitle} saveButton={this.createUser} onChange={this.updateFormState}/>
         <br />
-        <UsersList users={this.props.users} setUser={this.setUser} />
+        <UsersList users={this.props.users} setUser={this.setUser}/>
       </div>
     );
   }

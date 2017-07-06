@@ -21,7 +21,7 @@ function UserModal(props) {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-primary" data-dismiss="modal">Save</button>
+                <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={props.saveButton}>Save</button>
               </div>
             </div>
           </div>
