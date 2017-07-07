@@ -35,6 +35,6 @@ function TeamModalForm(props) {
       </div>
     </form>
   );
-};
+}
 
 export default TeamModalForm;
