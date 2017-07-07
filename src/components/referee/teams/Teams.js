@@ -20,11 +20,11 @@ class Teams extends Component {
       modalTitle: 'Add a new Team'
     };
     this.updateFormState = this.updateFormState.bind(this);
+    this.filterBySport = this.filterBySport.bind(this);
     this.setTeam = this.setTeam.bind(this);
     this.createTeam = this.createTeam.bind(this);
     this.removeTeam = this.removeTeam.bind(this);
     this.clearTeam = this.clearTeam.bind(this);
-    this.filterBySport = this.filterBySport.bind(this);
   }
 
   componentWillMount() {
@@ -56,7 +56,6 @@ class Teams extends Component {
   }
 
   createTeam() {
-    const userInput = this.state.team;
     this.props.teamActions.saveTeam(this.state.team);
   }
 

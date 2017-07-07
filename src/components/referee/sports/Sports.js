@@ -8,22 +8,25 @@ import SportsList from './SportsList';
 import SportModal from './SportModal';
 
 class Sports extends Component {
-
   constructor(props) {
-    let value = new Date().toISOString();
+    let date = new Date().toISOString();
     super(props);
     this.state = {
       sport: {
         name: '',
-        openingDate: value
+        openingDate: date
       },
       modalTitle: 'Add a new Sport'
     };
-
-    this.setSport = this.setSport.bind(this);
-    this.clearSport = this.clearSport.bind(this);
-    this.saveSport = this.saveSport.bind(this);
     this.updateFormState = this.updateFormState.bind(this);
+    this.setSport = this.setSport.bind(this);
+    this.createSport = this.createSport.bind(this);
+    this.removeSport = this.removeSport.bind(this);
+    this.clearSport = this.clearSport.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.sportActions.loadSports();
   }
 
   updateFormState(event) {
@@ -33,28 +36,31 @@ class Sports extends Component {
     this.setState({sport: sport});
   }
 
-  setSport(sport){
-    let title = 'Edit ' + sport;
+  setSport(sport) {
+    let title = 'Edit ' + sport.name;
     this.setState({
-      sport: {
-        name: sport
-      },
+      sport: sport,
       modalTitle: title
     });
   }
 
+  createSport() {
+    this.props.sportActions.saveSport(this.state.sport);
+  }
+
+  removeSport() {
+    this.props.sportActions.removeSport(this.state.sport);
+  }
+
   clearSport() {
+    let date = new Date().toISOString();
     this.setState({
       sport: {
-        name: ''
+        name: '',
+        openingDate: date
       },
       modalTitle: 'Add a new Sport'
     });
-  }
-
-  saveSport(){
-    // console.log('Saving Sport: ' + this.state.sport.name);
-    this.props.sportActions.saveSport(this.state.sport);
   }
 
   render() {
@@ -64,29 +70,14 @@ class Sports extends Component {
         <button className="btn btn-outline-primary" data-toggle="modal" data-target="#sportModal" onClick={this.clearSport}>
           New Sport
         </button>
-        <div>
-          <div className="modal fade" id="sportModal" role="dialog" aria-labelledby="sportModalLabel" aria-hidden="true">
-            <div className="modal-dialog" role="document">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="sportModalLabel">{this.state.modalTitle}</h5>
-                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <SportModal changeInput={this.updateFormState} value={this.state.sport} />
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" className="btn btn-primary" onClick={this.saveSport} data-dismiss="modal">Save</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SportModal sport={this.state.sport}
+                    modalTitle={this.state.modalTitle}
+                    onChange={this.updateFormState}
+                    deleteButton={this.removeSport}
+                    saveButton={this.saveSport} />
         <br />
-        <div>
-          <SportsList setSport={this.setSport} />
-        </div>
+        <SportsList sports={this.props.sports}
+                    setSport={this.setSport} />
       </div>
     );
   }
