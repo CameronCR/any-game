@@ -5,9 +5,10 @@ import { bindActionCreators } from 'redux';
 import * as teamActions from '../../../actions/teams';
 import * as sportActions from '../../../actions/sports';
 
-
-import TeamsList from './TeamsList';
-import TeamModal from './TeamModal';
+import List from '../common/List';
+import Modal from '../common/Modal';
+import TeamsListPreview from './TeamsListPreview';
+import TeamModalForm from './TeamModalForm';
 
 class Teams extends Component {
   constructor(props) {
@@ -97,15 +98,17 @@ class Teams extends Component {
               </select>
             </div>
           </div>
-          <TeamModal team={this.state.team}
-                     modalTitle={this.state.modalTitle}
-                     saveButton={this.createTeam}
-                     deleteButton={this.removeTeam}
-                     onChange={this.updateFormState}
-                     sports={this.props.sports}/>
+          <Modal item={this.state.team}
+                 modalTitle={this.state.modalTitle}
+                 saveButton={this.createTeam}
+                 deleteButton={this.removeTeam}
+                 onChange={this.updateFormState}
+                 sports={this.props.sports}
+                 modalForm={TeamModalForm} />
           <br />
-          <TeamsList teams={this.props.teams}
-                     setTeam={this.setTeam} />
+          <List list={this.props.teams}
+                setTeam={this.setTeam}
+                previewComponent={TeamsListPreview} />
         </div>
     );
   }

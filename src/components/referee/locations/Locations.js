@@ -6,7 +6,7 @@ import * as locationActions from '../../../actions/locations';
 
 import List from '../common/List';
 import Modal from '../common/Modal';
-import LocationListPreview from './LocationListPreview';
+import LocationsListPreview from './LocationsListPreview';
 import LocationModalForm from './LocationModalForm';
 
 class Locations extends Component {
@@ -78,7 +78,7 @@ class Locations extends Component {
         <br />
         <List list={this.props.locations}
               setItem={this.setLocation}
-              previewComponent={LocationListPreview} />
+              previewComponent={LocationsListPreview} />
       </div>
     );
   }

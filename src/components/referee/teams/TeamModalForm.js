@@ -9,24 +9,24 @@ function TeamModalForm(props) {
                type="text"
                className="form-control"
                onChange={props.onChange}
-               value={props.team.name} />
+               value={props.item.name} />
         <label>Location</label>
         <input name="location"
                type="text"
                className="form-control"
                onChange={props.onChange}
-               value={props.team.location} />
+               value={props.item.location} />
         <label>City</label>
         <input name="city"
                type="text"
                className="form-control"
                onChange={props.onChange}
-               value={props.team.city} />
+               value={props.item.city} />
         <label>Sport</label>
         <select name="sport"
                 className="form-control"
                 onChange={props.onChange}
-                value={props.team.sport} >
+                value={props.item.sport} >
           <option value="">Select a Sport</option>
           {props.sports.map((option) => {
             return <option key={option.name} value={option.name}>{option.name}</option>;
