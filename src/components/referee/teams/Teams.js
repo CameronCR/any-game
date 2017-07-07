@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as teamActions from '../../../actions/teams';
+import * as sportActions from '../../../actions/sports';
+
 
 import TeamsList from './TeamsList';
 import TeamModal from './TeamModal';
@@ -29,6 +31,7 @@ class Teams extends Component {
 
   componentWillMount() {
     this.props.teamActions.loadTeams();
+    this.props.sportActions.loadSports();
   }
 
   updateFormState(event) {
@@ -118,7 +121,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    teamActions: bindActionCreators(teamActions, dispatch)
+    teamActions: bindActionCreators(teamActions, dispatch),
+    sportActions: bindActionCreators(sportActions, dispatch)
   };
 }
 

@@ -1,9 +1,11 @@
 import * as actionTypes from './actionTypes';
 import * as firebase from '../lib/firebase';
 
+let ref = firebase.db.ref('teams');
+
 export function loadTeams() {
   return function(dispatch) {
-    firebase.db.ref('teams').orderByChild('sport').on('value', function (snapshot) {
+    firebase.db.ref('teams').orderByChild('name').on('value', function (snapshot) {
       sortTeamsBySportAndDispatch(snapshot, dispatch);
     });
   };
@@ -12,6 +14,7 @@ export function loadTeams() {
 export function loadTeamsBySport(sport) {
   return function(dispatch) {
     firebase.db.ref('teams').orderByChild('sport').equalTo(sport).on('value', function (snapshot) {
+      //todo: sort by team name before distpatch
       sortTeamsBySportAndDispatch(snapshot, dispatch);
     });
   };
@@ -38,13 +41,10 @@ export function saveTeam(team) {
 }
 
 export function removeTeam(team) {
-  return function(dispatch) {
-    let ref = firebase.db.ref('teams');
-    let query = ref.orderByChild('name').equalTo(team.name);
-    query.on('child_added', function(snapshot) {
-      snapshot.ref.remove();
-    });
-  };
+  let query = ref.orderByChild('name').equalTo(team.name);
+  query.on('child_added', function(snapshot) {
+    snapshot.ref.remove();
+  });
 }
 
 export function createTeamSuccess(status) {

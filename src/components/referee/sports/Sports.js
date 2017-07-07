@@ -9,7 +9,7 @@ import SportModal from './SportModal';
 
 class Sports extends Component {
   constructor(props) {
-    let date = new Date().toISOString();
+    let date = new Date();
     super(props);
     this.state = {
       sport: {
@@ -53,7 +53,7 @@ class Sports extends Component {
   }
 
   clearSport() {
-    let date = new Date().toISOString();
+    let date = new Date();
     this.setState({
       sport: {
         name: '',
@@ -74,7 +74,7 @@ class Sports extends Component {
                     modalTitle={this.state.modalTitle}
                     onChange={this.updateFormState}
                     deleteButton={this.removeSport}
-                    saveButton={this.saveSport} />
+                    saveButton={this.createSport} />
         <br />
         <SportsList sports={this.props.sports}
                     setSport={this.setSport} />
