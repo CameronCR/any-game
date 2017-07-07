@@ -29,8 +29,17 @@ function sortTeamsBySportAndDispatch(snapshot, dispatch){
 }
 
 export function saveTeam(team) {
+  let postKey;
+  ref.orderByChild('name').equalTo(team.name).once('value', function (snapshot){
+    let exists = (snapshot.val() !== null);
+    if (exists) {
+      postKey = Object.keys(snapshot.val())[0];
+    } else {
+      postKey = firebase.db.ref('teams/').push().key;
+    }
+  });
   return function(dispatch) {
-    firebase.db.ref('teams/').push(team, function(error) {
+    firebase.db.ref('teams/' + postKey).update(team, function(error) {
       if (error)
         dispatch(createTeamSuccess(false));
       else {

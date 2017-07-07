@@ -32,6 +32,16 @@ function TeamModalForm(props) {
             return <option key={option.name} value={option.name}>{option.name}</option>;
           })}
         </select>
+        <label>Venue</label>
+        <select name="venue"
+                className="form-control"
+                onChange={props.onChange}
+                value={props.item.venue} >
+          <option value="">Select a Venue</option>
+          {props.venues.map((option) => {
+            return <option key={option.name} value={option.name}>{option.name}</option>;
+          })}
+        </select>
       </div>
     </form>
   );

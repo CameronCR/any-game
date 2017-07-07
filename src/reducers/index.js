@@ -3,14 +3,14 @@ import teams from './teams';
 import sports from './sports';
 import loading from './loading';
 import users from './users';
-import locations from './locations';
+import venues from './venues';
 
 const rootReducer = combineReducers({
   teams,
   sports,
   loading,
   users,
-  locations
+  venues
 });
 
 export default rootReducer;

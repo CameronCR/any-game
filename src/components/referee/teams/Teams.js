@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import * as teamActions from '../../../actions/teams';
 import * as sportActions from '../../../actions/sports';
+import * as venueActions from '../../../actions/venues';
 
 import List from '../common/List';
 import Modal from '../common/Modal';
@@ -33,6 +34,7 @@ class Teams extends Component {
   componentWillMount() {
     this.props.teamActions.loadTeams();
     this.props.sportActions.loadSports();
+    this.props.venueActions.loadVenues();
   }
 
   updateFormState(event) {
@@ -84,7 +86,7 @@ class Teams extends Component {
         <div>
           <h1>Teams Admin</h1>
           <div className="row col-md-10">
-            <button className="btn btn-outline-primary" data-toggle="modal" data-target="#teamModal" onClick={this.clearTeam}>
+            <button className="btn btn-outline-primary" data-toggle="modal" data-target="#modal" onClick={this.clearTeam}>
               New Team
             </button>
             <div className="col-md-3">
@@ -104,10 +106,11 @@ class Teams extends Component {
                  deleteButton={this.removeTeam}
                  onChange={this.updateFormState}
                  sports={this.props.sports}
+                 venues={this.props.venues}
                  modalForm={TeamModalForm} />
           <br />
           <List list={this.props.teams}
-                setTeam={this.setTeam}
+                setItem={this.setTeam}
                 previewComponent={TeamsListPreview} />
         </div>
     );
@@ -118,14 +121,16 @@ class Teams extends Component {
 function mapStateToProps(state, ownProps) {
   return {
     teams: state.teams,
-    sports: state.sports
+    sports: state.sports,
+    venues: state.venues
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     teamActions: bindActionCreators(teamActions, dispatch),
-    sportActions: bindActionCreators(sportActions, dispatch)
+    sportActions: bindActionCreators(sportActions, dispatch),
+    venueActions: bindActionCreators(venueActions, dispatch)
   };
 }
 
