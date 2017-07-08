@@ -11,6 +11,9 @@ import Modal from '../common/Modal';
 import TeamsListPreview from './TeamsListPreview';
 import TeamModalForm from './TeamModalForm';
 
+import { shortenFileName } from '../../../lib/utilities';
+import teamsDevState from './TeamsDevState';
+
 class Teams extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +22,9 @@ class Teams extends Component {
         name: '',
         location: '',
         city: '',
-        sport: ''
+        sport: '',
+        venue: '',
+        fileName: ''
       },
       modalTitle: 'Add a new Team'
     };
@@ -28,6 +33,7 @@ class Teams extends Component {
     this.setTeam = this.setTeam.bind(this);
     this.createTeam = this.createTeam.bind(this);
     this.removeTeam = this.removeTeam.bind(this);
+    this.selectFile = this.selectFile.bind(this);
     this.clearTeam = this.clearTeam.bind(this);
   }
 
@@ -41,6 +47,13 @@ class Teams extends Component {
     const field = event.target.name;
     let team = this.state.team;
     team[field] = event.target.value;
+    this.setState({team: team});
+  }
+
+  selectFile(event) {
+    let team = this.state.team;
+    team['seatingChart'] = event.target.files[0];
+    team['fileName'] = shortenFileName(team.seatingChart.name);
     this.setState({team: team});
   }
 
@@ -70,15 +83,22 @@ class Teams extends Component {
   }
 
   clearTeam() {
-    this.setState({
-      team: {
-        name: '',
-        location: '',
-        city: '',
-        sport: ''
-      },
-      modalTitle: 'Add a new Team'
-    });
+    let dev = false;
+    if(!dev) {
+      this.setState({
+        team: {
+          name: '',
+          location: '',
+          city: '',
+          sport: '',
+          venue: '',
+          fileName: ''
+        },
+        modalTitle: 'Add a new Team'
+      });
+    } else {
+      this.setState(teamsDevState);
+    }
   }
 
   render() {
@@ -105,9 +125,11 @@ class Teams extends Component {
                  saveButton={this.createTeam}
                  deleteButton={this.removeTeam}
                  onChange={this.updateFormState}
+                 modalForm={TeamModalForm}
+
                  sports={this.props.sports}
                  venues={this.props.venues}
-                 modalForm={TeamModalForm} />
+                 selectFile={this.selectFile}/>
           <br />
           <List list={this.props.teams}
                 setItem={this.setTeam}

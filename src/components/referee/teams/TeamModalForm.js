@@ -42,6 +42,13 @@ function TeamModalForm(props) {
             return <option key={option.name} value={option.name}>{option.name}</option>;
           })}
         </select>
+        <br/>
+        <label className="btn btn-info">Seating Chart
+          <input type="file"
+                 onChange={props.selectFile}
+                 hidden />
+        </label>
+        <label>{props.item.fileName}</label>
       </div>
     </form>
   );

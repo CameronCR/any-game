@@ -38,6 +38,12 @@ export function saveTeam(team) {
       postKey = firebase.db.ref('teams/').push().key;
     }
   });
+  if(typeof team.seatingChart !== 'undefined') {
+    uploadSeatingChart(team, postKey);
+    team['seatingChartPresent'] = team.location;
+  } else {
+    team['seatingChartPresent'] = 'false';
+  }
   return function(dispatch) {
     firebase.db.ref('teams/' + postKey).update(team, function(error) {
       if (error)
@@ -47,6 +53,19 @@ export function saveTeam(team) {
       }
     });
   };
+}
+
+function uploadSeatingChart(team, postKey){
+  let fileName;
+  if(typeof team.venue !== 'undefined') {
+    fileName = team.venue;
+  } else {
+    fileName = 'No Location';
+  }
+  let storageRef = firebase.storage.ref('seatingCharts/' + postKey + '/' + fileName);
+  storageRef.put(team.seatingChart).then(function(snapshot) {
+    console.log('Uploaded seating chart.');
+  });
 }
 
 export function removeTeam(team) {
