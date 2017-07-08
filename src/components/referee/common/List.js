@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import ListPreview from './ListPreview';
+
 class List extends Component {
 
   constructor(props) {
@@ -9,8 +11,7 @@ class List extends Component {
 
   previewListing(item, index){
     const handleClick = () => this.props.setItem(item);
-    const PreviewComponent = this.props.previewComponent;
-    return <PreviewComponent item={item} key={index} handleClick={handleClick} />;
+    return <ListPreview item={item} key={index} handleClick={handleClick} />;
   }
 
   render() {
