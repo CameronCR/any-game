@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { formatDate } from '../common/Format';
+import DatePickerInput from '../common/DatePickerInput';
 
 // Need to add below <br />:
 // {formatDate(props.sport.openingDate)}
@@ -13,10 +14,10 @@ function SportModalForm(props) {
                name="name"
                className="form-control"
                onChange={props.onChange}
-               value={props.sport.name} />
+               value={props.item.name} />
          <label>Opening Day</label>
          <br />
-
+       <DatePickerInput />
       </div>
     </form>
   );

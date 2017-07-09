@@ -3,6 +3,29 @@ import * as firebase from '../lib/firebase';
 
 let ref = firebase.db.ref('teams');
 
+//Utility Funtions
+function sortTeamsBySportAndDispatch(snapshot, dispatch){
+  let teams = [];
+  snapshot.forEach(function(child) {
+    teams.push(child.val());
+  });
+  dispatch(loadTeamsSuccess(teams));
+}
+
+function uploadSeatingChart(team, postKey){
+  let fileName;
+  if(typeof team.venue !== 'undefined') {
+    fileName = team.venue;
+  } else {
+    fileName = 'No Location';
+  }
+  let storageRef = firebase.storage.ref('seatingCharts/' + postKey + '/' + fileName);
+  storageRef.put(team.seatingChart).then(function(snapshot) {
+    console.log('Uploaded seating chart.');
+  });
+}
+
+//Actions
 export function loadTeams() {
   return function(dispatch) {
     firebase.db.ref('teams').orderByChild('name').on('value', function (snapshot) {
@@ -18,14 +41,6 @@ export function loadTeamsBySport(sport) {
       sortTeamsBySportAndDispatch(snapshot, dispatch);
     });
   };
-}
-
-function sortTeamsBySportAndDispatch(snapshot, dispatch){
-  let teams = [];
-  snapshot.forEach(function(child) {
-    teams.push(child.val());
-  });
-  dispatch(loadTeamsSuccess(teams));
 }
 
 export function saveTeam(team) {
@@ -55,19 +70,6 @@ export function saveTeam(team) {
   };
 }
 
-function uploadSeatingChart(team, postKey){
-  let fileName;
-  if(typeof team.venue !== 'undefined') {
-    fileName = team.venue;
-  } else {
-    fileName = 'No Location';
-  }
-  let storageRef = firebase.storage.ref('seatingCharts/' + postKey + '/' + fileName);
-  storageRef.put(team.seatingChart).then(function(snapshot) {
-    console.log('Uploaded seating chart.');
-  });
-}
-
 export function removeTeam(team) {
   let query = ref.orderByChild('name').equalTo(team.name);
   query.on('child_added', function(snapshot) {
@@ -75,6 +77,7 @@ export function removeTeam(team) {
   });
 }
 
+//To Reducers
 export function createTeamSuccess(status) {
   return {
     type: actionTypes.CREATE_TEAM_SUCCESS,
@@ -86,5 +89,12 @@ export function loadTeamsSuccess(teams) {
   return {
     type: actionTypes.LOAD_TEAMS_SUCCESS,
     teams
+  };
+}
+
+export function loadSeatingChartSuccess(file) {
+  return {
+    type: actionTypes.LOAD_SEATING_CHART_SUCCESS,
+    file
   };
 }

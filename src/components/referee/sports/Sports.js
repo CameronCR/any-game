@@ -7,6 +7,10 @@ import * as sportActions from '../../../actions/sports';
 import SportsList from './SportsList';
 import SportModal from './SportModal';
 
+import List from '../common/List';
+import Modal from '../common/Modal';
+import SportModalForm from './SportModalForm';
+
 class Sports extends Component {
   constructor(props) {
     let date = new Date();
@@ -67,17 +71,18 @@ class Sports extends Component {
     return (
       <div>
         <h1>Sports Admin</h1>
-        <button className="btn btn-outline-primary" data-toggle="modal" data-target="#sportModal" onClick={this.clearSport}>
+        <button className="btn btn-outline-primary" data-toggle="modal" data-target="#modal" onClick={this.clearSport}>
           New Sport
         </button>
-        <SportModal sport={this.state.sport}
-                    modalTitle={this.state.modalTitle}
-                    onChange={this.updateFormState}
-                    deleteButton={this.removeSport}
-                    saveButton={this.createSport} />
+        <Modal item={this.state.sport}
+               modalTitle={this.state.modalTitle}
+               onChange={this.updateFormState}
+               deleteButton={this.removeSport}
+               saveButton={this.createSport}
+               modalForm={SportModalForm} />
         <br />
-        <SportsList sports={this.props.sports}
-                    setSport={this.setSport} />
+        <List list={this.props.sports}
+              setItem={this.setSport} />
       </div>
     );
   }

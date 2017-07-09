@@ -6,7 +6,6 @@ import * as venueActions from '../../../actions/venues';
 
 import List from '../common/List';
 import Modal from '../common/Modal';
-import VenuesListPreview from './VenuesListPreview';
 import VenueModalForm from './VenueModalForm';
 
 class Venues extends Component {
@@ -76,8 +75,7 @@ class Venues extends Component {
                modalForm={VenueModalForm} />
         <br />
         <List list={this.props.venues}
-              setItem={this.setVenue}
-              previewComponent={VenuesListPreview} />
+              setItem={this.setVenue} />
       </div>
     );
   }
