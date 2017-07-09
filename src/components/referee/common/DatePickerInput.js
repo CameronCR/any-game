@@ -1,23 +1,36 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
-import DatePicker from 'react-bootstrap-date-picker';
+import PropTypes from 'prop-types';
+import DayPicker from 'react-day-picker';
 
 class DatePickerInput extends Component {
   constructor(props) {
-    let value = new Date().toISOString();
-    props.handleChange(value);
     super(props);
     this.state = {
-      value: value
+      selectedDay: new Date()
     };
+    this.handleDayClick = this.handleDayClick.bind(this);
+  }
+
+  handleDayClick(day) {
+    let event = {};
+    let target = {};
+    target['name'] = 'openingDate';
+    target['value'] = day;
+    event['target'] = target;
+    this.props.handleChange(event);
+    this.setState({
+      selectedDay: day
+    });
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
-        <input value={this.state.value} />
-        DatePicker
+        <DayPicker
+          name="openingDate"
+          onDayClick={this.handleDayClick}
+          selectedDays={this.state.selectedDay}
+        />
       </div>
     );
   }

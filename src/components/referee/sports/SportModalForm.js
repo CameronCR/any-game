@@ -22,6 +22,7 @@ function SportModalForm(props) {
                onChange={props.onChange}
                value={props.item.slug} />
          <label>Opening Day</label>
+         <DatePickerInput handleChange={props.onChange}/>
          <br />
       </div>
     </form>
