@@ -4,9 +4,6 @@ import { bindActionCreators } from 'redux';
 
 import * as sportActions from '../../../actions/sports';
 
-import SportsList from './SportsList';
-import SportModal from './SportModal';
-
 import List from '../common/List';
 import Modal from '../common/Modal';
 import SportModalForm from './SportModalForm';

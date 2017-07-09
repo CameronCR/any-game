@@ -17,7 +17,6 @@ function SportModalForm(props) {
                value={props.item.name} />
          <label>Opening Day</label>
          <br />
-       <DatePickerInput />
       </div>
     </form>
   );

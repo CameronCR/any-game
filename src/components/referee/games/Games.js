@@ -9,10 +9,6 @@ class Games extends Component {
     super(props);
   }
 
-  componentWillMount() {
-    //this.props.gameActions.loadGames();
-  }
-
   render() {
     return (
       <div>

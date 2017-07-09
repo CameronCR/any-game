@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import DatePicker from 'react-bootstrap-date-picker';
 
 class DatePickerInput extends Component {
   constructor(props) {
     let value = new Date().toISOString();
+    props.handleChange(value);
     super(props);
     this.state = {
       value: value
     };
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(value, formattedValue) {
-    this.setState({
-      value: value,
-      formattedValue: formattedValue
-    });
-  }
   render() {
+    console.log(this.props)
     return (
-      <DatePicker id="example-datepicker" value={this.state.value} onChange={this.handleChange} />
+      <div>
+        <input value={this.state.value} />
+        DatePicker
+      </div>
     );
   }
 }
+
+DatePickerInput.propTypes = {
+  handleChange: PropTypes.func.isRequired
+};
 
 export default DatePickerInput;
