@@ -15,6 +15,12 @@ function SportModalForm(props) {
                className="form-control"
                onChange={props.onChange}
                value={props.item.name} />
+        <label>Slug</label>
+        <input type="text"
+               name="slug"
+               className="form-control"
+               onChange={props.onChange}
+               value={props.item.slug} />
          <label>Opening Day</label>
          <br />
       </div>

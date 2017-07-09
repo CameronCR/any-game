@@ -15,6 +15,7 @@ class Sports extends Component {
     this.state = {
       sport: {
         name: '',
+        slug: '',
         openingDate: date
       },
       modalTitle: 'Add a new Sport'
@@ -39,6 +40,10 @@ class Sports extends Component {
 
   setSport(sport) {
     let title = 'Edit ' + sport.name;
+    if(typeof sport.slug == 'undefined') {
+      sport['slug'] = 'No Slug';
+    }
+    console.log(sport)
     this.setState({
       sport: sport,
       modalTitle: title
@@ -58,6 +63,7 @@ class Sports extends Component {
     this.setState({
       sport: {
         name: '',
+        slug: '',
         openingDate: date
       },
       modalTitle: 'Add a new Sport'
