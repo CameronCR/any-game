@@ -33,4 +33,12 @@ function Modal(props) {
   );
 }
 
+Modal.propTypes = {
+  item: PropTypes.shape({
+    name: PropTypes.string
+  }).isRequired,
+  modalTitle: PropTypes.string.isRequired,
+  modalForm: PropTypes.func.isRequired
+};
+
 export default Modal;
