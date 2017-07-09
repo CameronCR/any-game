@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import ListPreview from './ListPreview';
 
@@ -24,5 +25,12 @@ class List extends Component {
     );
   }
 }
+
+List.propTypes = {
+  list: PropTypes.array.isRequired,
+  setItem: PropTypes.func.isRequired
+};
+
+
 
 export default List;
