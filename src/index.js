@@ -10,11 +10,9 @@ import '../public/css/bootstrap.min.css';
 
 import './components/styles/dashboard.css';
 
-import { loadSports } from './actions/sports';
-import { loadTeams } from './actions/teams';
 
 const store = configureStore();
-store.dispatch(loadSports());
+// To preload data: store.dispatch(action());
 
 
 render (

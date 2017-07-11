@@ -1,18 +1,18 @@
 import React from 'react';
 
-const SportForm = ({sport, onChange}) => {
+function VenueModalForm(props) {
   return(
     <form>
       <div className="form-group">
-        <label>Sport Name</label>
+        <label>Venue Name</label>
         <input type="text"
                name="name"
                className="form-control"
-               onChange={onChange}
-               value={sport.name} />
+               onChange={props.onChange}
+               value={props.item.name} />
       </div>
     </form>
   );
-};
+}
 
-export default SportForm;
+export default VenueModalForm;

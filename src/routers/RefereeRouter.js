@@ -1,8 +1,11 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+
 import Teams from '../components/referee/teams/Teams';
 import Sports from '../components/referee/sports/Sports';
 import Users from '../components/referee/users/Users';
+import Games from '../components/referee/games/Games';
+import Venues from '../components/referee/venues/Venues';
 
 const RefereeRouter = () => {
   return(
@@ -10,6 +13,8 @@ const RefereeRouter = () => {
         <Route path="/referee/sports" component={Sports} />
         <Route path="/referee/teams" component={Teams} />
         <Route path="/referee/users" component={Users} />
+        <Route path="/referee/games" component={Games} />
+        <Route path="/referee/venues" component={Venues} />
       </main>
   );
 };
