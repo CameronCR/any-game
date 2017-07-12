@@ -4,9 +4,11 @@ import DayPicker from 'react-day-picker';
 
 class DatePickerInput extends Component {
   constructor(props) {
+    let startingDate = new Date(props.value)
+    console.log(startingDate)
     super(props);
     this.state = {
-      selectedDay: new Date()
+      selectedDay: startingDate
     };
     this.handleDayClick = this.handleDayClick.bind(this);
   }
@@ -26,6 +28,7 @@ class DatePickerInput extends Component {
   render() {
     return (
       <div>
+        {this.props.value.toISOString}
         <DayPicker
           name="openingDate"
           onDayClick={this.handleDayClick}

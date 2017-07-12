@@ -21,8 +21,15 @@ function SportModalForm(props) {
                className="form-control"
                onChange={props.onChange}
                value={props.item.slug} />
+        <label>Acronym</label>
+        <input type="text"
+               name="acronym"
+               className="form-control"
+               onChange={props.onChange}
+               value={props.item.acronym} />
          <label>Opening Day</label>
-         <DatePickerInput handleChange={props.onChange}/>
+         <DatePickerInput value={props.item.openingDate}
+                          handleChange={props.onChange}/>
          <br />
       </div>
     </form>
