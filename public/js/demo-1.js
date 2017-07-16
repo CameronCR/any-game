@@ -13,12 +13,22 @@
         target = {x: width/2, y: height/2};
 
         largeHeader = document.getElementById('large-header');
-        largeHeader.style.height = height+'px';
+        if (largeHeader) {
+            largeHeader.style.height = height+'px';
+        } else {
+            console.log("Large Header not present.");
+        }
 
         canvas = document.getElementById('demo-canvas');
-        canvas.width = width;
-        canvas.height = height;
-        ctx = canvas.getContext('2d');
+        if (canvas) {
+            canvas.width = width;
+            canvas.height = height;
+            ctx = canvas.getContext('2d');
+        } else {
+            console.log("Demo Canvas not present.");
+        }
+        
+        
 
         // create points
         points = [];

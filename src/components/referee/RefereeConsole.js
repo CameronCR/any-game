@@ -8,6 +8,10 @@ import RefereeRouter from '../../routers/RefereeRouter';
 import RefereeHeader from  './RefereeHeader';
 import RefereeSidebar from "./RefereeSidebar";
 
+import '../../../public/css/bootstrap.min.css';
+
+import '../../components/styles/dashboard.css';
+
 class RefereeConsole extends Component {
 
   render() {

@@ -6,10 +6,6 @@ import configureStore from './store/configureStore';
 
 import App from './components/App';
 
-//import '../public/css/bootstrap.min.css';
-
-//import './components/styles/dashboard.css';
-
 
 const store = configureStore();
 // To preload data: store.dispatch(action());
