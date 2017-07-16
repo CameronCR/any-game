@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-import * as teamActions from '../../actions/teams';
+import * as settingsActions from '../../actions/settings';
 import RefereeRouter from '../../routers/RefereeRouter';
 import RefereeHeader from  './RefereeHeader';
 import RefereeSidebar from "./RefereeSidebar";
@@ -32,7 +32,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    teamActions: bindActionCreators(teamActions, dispatch)
+    settingsActions: bindActionCreators(settingsActions, dispatch)
   };
 }
 
