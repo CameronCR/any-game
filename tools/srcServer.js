@@ -19,7 +19,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('/referee/*', function(req, res) {
+app.get(['/referee/*', '/referee'], function(req, res) {
   res.sendFile(path.join( __dirname, '../src/referee.html'));
 });
 
