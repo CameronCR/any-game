@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Banner(props){
+function NavBar(props){
   return(
     <div style={props.style} className="banner">
         <nav className="navbar navbar-default">
@@ -42,4 +42,4 @@ function Banner(props){
   );
 }
 
-export default Banner;
+export default NavBar;

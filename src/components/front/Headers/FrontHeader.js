@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 import { StickyContainer, Sticky } from 'react-sticky';
 
-import Header from './Header';
-import HeaderMid from './HeaderMid';
-import Banner from './Banner';
+import SocialMediaBanner from './SocialMediaBanner';
+import ContactBanner from './ContactBanner';
+import NavBar from './NavBar';
 import Slider from './Slider';
 
 class FrontHeader extends Component {
@@ -27,11 +27,11 @@ class FrontHeader extends Component {
 
 
   handleScroll() {
-    if (window.scrollY > 160) {
+    if (window.scrollY > 143) {
       this.setState({
         style: { width: "100%", position: "fixed", top: "0", zIndex: "5000", backgroundColor: "white"}
       });
-    } else if (window.scrollY < 160) {
+    } else if (window.scrollY < 143) {
       this.setState({
         style: { width: "100%", position: "relative"}
       });
@@ -41,9 +41,9 @@ class FrontHeader extends Component {
   render() {
     return(
       <div>
-        <Header />
-        <HeaderMid />
-        <Banner style={this.state.style} />
+        <SocialMediaBanner />
+        <ContactBanner />
+        <NavBar style={this.state.style} />
         <Slider />
       </div>
     );

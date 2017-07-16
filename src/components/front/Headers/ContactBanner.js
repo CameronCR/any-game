@@ -1,25 +1,27 @@
 import React from 'react';
 
-function HeaderMid(props){
+function ContactBanner(props){
   return(
     <div className="header_mid">
        <div className="w3layouts_header_mid">
           <ul>
              <li>
+               <a href="mailto:info@anygame.io">
                 <div className="header_contact_details_agile">
                    <i className="fa fa-envelope-o" aria-hidden="true"></i>
                    <div className="w3l_header_contact_details_agile">
                       <div className="header-contact-detail-title">Send us a Message</div>
-                      <a href="mailto:info@example.com">info@example.com</a>
+                      info@anygame.io
                    </div>
                 </div>
+              </a>
              </li>
              <li>
                 <div className="header_contact_details_agile">
                    <i className="fa fa-phone" aria-hidden="true"></i>
                    <div className="w3l_header_contact_details_agile">
                       <div className="header-contact-detail-title">Give us a Call</div>
-                      <a className="w3l_header_contact_details_agile-info_inner"> 919-993-1000 </a>
+                      <a className="w3l_header_contact_details_agile-info_inner"> 310-906-0226 </a>
                    </div>
                 </div>
              </li>
@@ -28,7 +30,7 @@ function HeaderMid(props){
                    <i className="fa fa-clock-o" aria-hidden="true"></i>
                    <div className="w3l_header_contact_details_agile">
                       <div className="header-contact-detail-title">Opening Hours</div>
-                      <a className="w3l_header_contact_details_agile-info_inner">Mon - Sat: 7:00 - 18:00</a>
+                      <a className="w3l_header_contact_details_agile-info_inner">24 hours a day</a>
                    </div>
                 </div>
              </li>
@@ -36,8 +38,8 @@ function HeaderMid(props){
                 <div className="header_contact_details_agile">
                    <i className="fa fa-map-marker" aria-hidden="true"></i>
                    <div className="w3l_header_contact_details_agile">
-                      <div className="header-contact-detail-title">3007 Sarah Drive</div>
-                      <a className="w3l_header_contact_details_agile-info_inner">Franklin, LA 70538 </a>
+                      <div className="header-contact-detail-title">8331 Holy Cross Place</div>
+                      <a className="w3l_header_contact_details_agile-info_inner">Los Angeles, CA 90045 </a>
                    </div>
                 </div>
              </li>
@@ -47,4 +49,4 @@ function HeaderMid(props){
   );
 }
 
-export default HeaderMid;
+export default ContactBanner;
