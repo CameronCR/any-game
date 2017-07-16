@@ -1,22 +1,19 @@
 import axios from 'axios';
 import * as firebase from '../lib/firebase';
-let seatGeekAuth;
 
-
-
-const loadCommentsFromServer = function() {
-  firebase.db.ref('config/keys/seatGeek').on('value', function (snapshot) {
-      seatGeekAuth = snapshot.val();
-      console.log(seatGeekAuth)
-      let url = "https://api.seatgeek.com/2/events?client_id=" + seatGeekAuth.clientId + "&client_secret=" + seatGeekAuth.secret;
-      console.log(url)
-      axios.get(url).then(function(response){
-        console.log(response);
-      }).catch(function(error){
-        console.log(error);
-      });
-  });
-
+let settings = {
+  "auth": {
+    username: 'NzM2NDQ3OXwxNDk5NDEzNzMzLjAy',
+    password: 'c646a76328b0d4a853362d659c6ff8cd54a945da16a91760116d7eecd2f8ef3e'
+  }
 };
 
-export default loadCommentsFromServer;
+function loadEvents(slug) {
+  let url = "https://api.seatgeek.com/2/events?performers.slug=" + slug;
+  axios.get(url, settings).then((response) => {
+    let data = response.data;
+    console.log(data)
+  });
+}
+
+export default loadEvents;

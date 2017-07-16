@@ -18,3 +18,5 @@ export const CURRENTLY_LOADING = 'CURRENTLY_LOADING';
 //Users
 export const ACTIVE_USERS = 'ACTIVE_USERS';
 export const USER_ERROR = 'USER_ERROR';
+
+export const SETTINGS = 'SETTINGS';
