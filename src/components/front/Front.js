@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+
+import FrontHeader from './Headers/FrontHeader';
+import TeamSelection from './TeamSelection';
+
+
 class Front extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +19,8 @@ class Front extends Component {
   render() {
     return (
       <div>
-        <h1>Any Game</h1>
+        <FrontHeader />
+        <TeamSelection />
       </div>
     );
   }

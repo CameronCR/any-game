@@ -9,7 +9,8 @@
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",
     "test": "mocha --reporter progress tools/testSetup.js \"src/**/*.test.js\"",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "build": "webpack"
   },
   "author": "Cameron Aziz",
   "license": "UNLICENSED",
@@ -29,6 +30,7 @@
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^4.0.8",
+    "react-sticky": "^6.0.1",
     "redux": "3.5.2",
     "redux-thunk": "2.0.1",
     "toastr": "2.1.2"

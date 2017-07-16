@@ -44,8 +44,8 @@ class Sports extends Component {
     if(typeof sport.slug == 'undefined') {
       sport['slug'] = 'No Slug';
     }
-    console.log(sport)
-    console.log(this.state.sport)
+    console.log(sport);
+    console.log(this.state.sport);
     this.setState({
       sport: {
         name: '',
@@ -53,13 +53,13 @@ class Sports extends Component {
         acronym: ''
       }
     });
-    console.log(this.state.sport)
+    console.log(this.state.sport);
 
     this.setState({
       sport: sport,
       modalTitle: title
     });
-    console.log(this.state.sport)
+    console.log(this.state.sport);
 
   }
 
