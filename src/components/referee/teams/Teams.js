@@ -16,7 +16,6 @@ import teamsDevState from './TeamsDevState';
 
 import * as firebase from '../../../lib/firebase';
 
-
 class Teams extends Component {
   constructor(props) {
     super(props);
