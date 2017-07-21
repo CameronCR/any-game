@@ -5,9 +5,17 @@ let ref = firebase.db.ref('config');
 
 export function loadSettings() {
   return function(dispatch) {
+    dispatch(requestSettings(true));
     ref.on('value', function (snapshot) {
       dispatch(loadSettingsSuccess(snapshot.val().keys));
     });
+  };
+}
+
+export function requestSettings(status) {
+  return {
+    type: actionTypes.REQUEST_SETTINGS,
+    status
   };
 }
 

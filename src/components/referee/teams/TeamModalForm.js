@@ -22,6 +22,12 @@ function TeamModalForm(props) {
                className="form-control"
                onChange={props.onChange}
                value={props.item.city} />
+        <label>Slug</label>
+        <input name="slug"
+               type="text"
+               className="form-control"
+               onChange={props.onChange}
+               value={props.item.slug} />
         <label>Sport</label>
         <select name="sport"
                 className="form-control"

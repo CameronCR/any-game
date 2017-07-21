@@ -10,10 +10,17 @@ import RefereeHeader from  './RefereeHeader';
 import RefereeSidebar from "./RefereeSidebar";
 
 class RefereeConsole extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loadingClass: "loading"
+    };
+  }
 
   render() {
+    const { isFetching } = this.props.settings;
     return (
-      <div>
+      <div className={(isFetching ? "loading" : "")}>
         <RefereeHeader />
         <div className="container-fluid">
           <div className="row">
@@ -28,6 +35,7 @@ class RefereeConsole extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
+    settings: state.settings
   };
 }
 
