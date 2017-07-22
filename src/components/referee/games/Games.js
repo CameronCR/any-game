@@ -50,9 +50,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     gameActions: bindActionCreators(gameActions, dispatch),
-    teamActions: bindActionCreators(teamActions, dispatch),
-    settingsActions: bindActionCreators(settingsActions, dispatch)
-
+    teamActions: bindActionCreators(teamActions, dispatch)
   };
 }
 

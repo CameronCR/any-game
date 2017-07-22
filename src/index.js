@@ -11,7 +11,7 @@ import * as settingsActions from './actions/settings';
 
 const store = configureStore();
 // To preload data: store.dispatch(action());
-store.dispatch(settingsActions.loadSettings());
+//store.dispatch(settingsActions.loadSettings());
 
 
 render (

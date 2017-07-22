@@ -17,10 +17,22 @@ class RefereeConsole extends Component {
     };
   }
 
+  componentWillMount(){
+    this.props.settingsActions.loadSettings();
+  }
+
   render() {
     const { isFetching } = this.props.settings;
+    console.log(isFetching)
+    if(isFetching) {
+      return (
+        <div className="loading">
+          <h1>Loading...</h1>
+        </div>
+      );
+    }
     return (
-      <div className={(isFetching ? "loading" : "")}>
+      <div>
         <RefereeHeader />
         <div className="container-fluid">
           <div className="row">
