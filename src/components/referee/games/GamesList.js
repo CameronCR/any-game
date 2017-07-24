@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import ListPreview from './ListPreview';
-
 class List extends Component {
   constructor(props) {
     super(props);
