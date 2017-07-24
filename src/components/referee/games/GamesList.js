@@ -10,13 +10,13 @@ class List extends Component {
   }
 
   previewListing(item, index){
-    let awayTeam = item.performers[1];
+    const handleClick = () => this.props.setGame(item);
     return (
       <div className="card" style={{width: '20rem', margin: '10px'}}>
         <div className="card-block">
-          <h4 className="card-title">{awayTeam.name}</h4>
+          <h4 className="card-title">{item.short_title}</h4>
           <p className="card-text">{formatDate(item.datetime_local)}</p>
-          <a href="#" className="btn btn-primary">Load Game</a>
+          <a href="#" className="btn btn-primary" onClick={handleClick} data-toggle="modal" data-target="#modal">Load Game</a>
         </div>
       </div>
     );
@@ -28,6 +28,15 @@ class List extends Component {
         <h4>Upcoming {this.props.list.length} games</h4>
         <div className="row">
           {this.props.list.map(this.previewListing)}
+          <div className="card" style={{width: '20rem', margin: '10px'}}>
+            <div className="card-block">
+              <br />
+              <br />
+              <a href="#" style={{marginRight: 'auto', marginLeft: 'auto', display: 'block'}} className="col-md-8 btn btn-outline-primary">Load More Games</a>
+              <br />
+              <br />
+            </div>
+          </div>
         </div>
       </div>
     );

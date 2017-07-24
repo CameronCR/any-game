@@ -18,6 +18,7 @@ class Games extends Component {
     };
     this.props.teamActions.loadTeams();
     this.getGames = this.getGames.bind(this);
+    this.setGame = this.setGame.bind(this);
   }
 
   getGames(event){
@@ -34,11 +35,17 @@ class Games extends Component {
     }
   }
 
+  setGame(game){
+    console.log(game);
+  }
+
   gamesList(){
     if(this.props.games.isFetching) {
       return <RefereeLoading />;
     } else if(this.props.games.length > 0) {
-      return <GamesList list={this.props.games} preview="datetime_local" />;
+      return (<GamesList list={this.props.games}
+              setItem={this.setGame} />
+      );
     } else {
       return (
         <div className="col-md-4">
