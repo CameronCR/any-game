@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as teamActions from '../../actions/teams';
 
 import TeamSelectionPreview from './TeamSelectionPreview';
 
@@ -27,9 +31,13 @@ class TeamSelection extends Component {
     this.teamSelectionPreview = this.teamSelectionPreview.bind(this);
   }
 
-  teamSelectionPreview(team, index){
-    return <TeamSelectionPreview team={team} key={index} />;
+  componentWillMount() {
+    this.props.teamActions.loadTeams();
 
+  }
+
+  teamSelectionPreview(team, index) {
+    return <TeamSelectionPreview key={index} team={team} />;
   }
 
   render() {
@@ -39,12 +47,23 @@ class TeamSelection extends Component {
           <p className="sub_para_agile">Every week we add new teams that we track.</p>
             <div className="agile_team_grids_top">
               <ul id="flexiselDemo1">
-                  {teams.map(this.teamSelectionPreview)}
+                  {this.props.teams.map(this.teamSelectionPreview)}
               </ul>
           </div>
       </div>
     );
   }
 }
+function mapStateToProps(state, ownProps) {
+  return {
+    teams: state.teams
+  };
+}
 
-export default TeamSelection;
+function mapDispatchToProps(dispatch) {
+  return {
+    teamActions: bindActionCreators(teamActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TeamSelection);
