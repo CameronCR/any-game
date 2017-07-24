@@ -6,7 +6,7 @@ import * as gameActions from '../../../actions/games';
 import * as teamActions from '../../../actions/teams';
 import * as settingsActions from '../../../actions/settings';
 
-import List from '../common/List';
+import GamesList from './GamesList';
 
 class Games extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class Games extends Component {
 
   gamesList(){
     if(this.props.games.length > 0) {
-      return <List list={this.props.games} preview="datetime_local" />;
+      return <GamesList list={this.props.games} preview="datetime_local" />;
     } else {
       return (
         <div className="col-md-4">

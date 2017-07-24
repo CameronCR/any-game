@@ -14,5 +14,5 @@ export function shortenFileName(fileName) {
 
 export function formatDate(dateString) {
   let formattedDate = new Date(dateString);
-
+  return formattedDate.toLocaleDateString();
 }
