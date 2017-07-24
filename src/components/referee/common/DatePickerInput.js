@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import DayPicker from 'react-day-picker';
 
 class DatePickerInput extends Component {
   constructor(props) {
-    let startingDate = new Date(props.value)
-    console.log(startingDate)
+    let startingDate = new Date(props.value);
     super(props);
     this.state = {
       selectedDay: startingDate
@@ -27,14 +25,7 @@ class DatePickerInput extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.value.toISOString}
-        <DayPicker
-          name="openingDate"
-          onDayClick={this.handleDayClick}
-          selectedDays={this.state.selectedDay}
-        />
-      </div>
+      <div>Day Picker</div>
     );
   }
 }

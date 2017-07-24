@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 
 import * as gameActions from '../../../actions/games';
 import * as teamActions from '../../../actions/teams';
-import * as settingsActions from '../../../actions/settings';
 
 import RefereeLoading from '../RefereeLoading';
 
@@ -14,7 +13,8 @@ class Games extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: false
+      error: false,
+      errorMessage: ''
     };
     this.props.teamActions.loadTeams();
     this.getGames = this.getGames.bind(this);
@@ -40,11 +40,12 @@ class Games extends Component {
   }
 
   gamesList(){
+    const clickGame = () => this.setGame;
     if(this.props.games.isFetching) {
       return <RefereeLoading />;
     } else if(this.props.games.length > 0) {
       return (<GamesList list={this.props.games}
-              setItem={this.setGame} />
+                         setItem={this.setGame} />
       );
     } else {
       return (

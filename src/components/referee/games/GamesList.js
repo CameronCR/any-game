@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import GameCard from './GameCard';
+
 import { formatDate } from '../../../lib/utilities';
 
-class List extends Component {
+class GameList extends Component {
   constructor(props) {
     super(props);
     this.previewListing = this.previewListing.bind(this);
   }
 
   previewListing(item, index){
-    const handleClick = () => this.props.setGame(item);
+    const handleClick = () => this.props.setItem(item);
     return (
-      <div className="card" style={{width: '20rem', margin: '10px'}}>
-        <div className="card-block">
-          <h4 className="card-title">{item.short_title}</h4>
-          <p className="card-text">{formatDate(item.datetime_local)}</p>
-          <a href="#" className="btn btn-primary" onClick={handleClick} data-toggle="modal" data-target="#modal">Load Game</a>
-        </div>
-      </div>
+      <GameCard key={index}
+                game={item}
+                handleClick={handleClick} />
     );
   }
 
@@ -43,14 +41,9 @@ class List extends Component {
   }
 }
 
-List.propTypes = {
+GameList.propTypes = {
   list: PropTypes.array.isRequired,
-  setItem: PropTypes.func.isRequired,
-  preview: PropTypes.string
+  setItem: PropTypes.func.isRequired
 };
 
-List.defaultProps = {
-  preview: 'ListPreview'
-};
-
-export default List;
+export default GameList;

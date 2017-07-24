@@ -1,7 +1,6 @@
 import React from 'react';
 
 function TeamSelectionPreview(props) {
-  console.log(props)
   const imageUri = 'images/' + props.team.image;
   return(
     <li>
