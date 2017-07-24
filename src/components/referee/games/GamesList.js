@@ -9,19 +9,6 @@ class List extends Component {
     this.previewListing = this.previewListing.bind(this);
   }
 
-  gameCard(item){
-    let awayTeam = item.performers[1];
-    return (
-      <div className="card" style={{width: '20rem', margin: '10px'}}>
-        <div className="card-block">
-          <h4 className="card-title">{awayTeam.name}</h4>
-          <p className="card-text">{formatDate(item.datetime_local)}</p>
-          <a href="#" className="btn btn-primary">Load Game</a>
-        </div>
-      </div>
-    );
-  }
-
   previewListing(item, index){
     let awayTeam = item.performers[1];
     return (
