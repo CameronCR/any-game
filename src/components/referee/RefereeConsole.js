@@ -8,13 +8,11 @@ import * as teamActions from '../../actions/teams';
 import RefereeRouter from '../../routers/RefereeRouter';
 import RefereeHeader from  './RefereeHeader';
 import RefereeSidebar from "./RefereeSidebar";
+import RefereeLoading from './RefereeLoading';
 
 class RefereeConsole extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loadingClass: "loading"
-    };
   }
 
   componentWillMount(){
@@ -23,12 +21,9 @@ class RefereeConsole extends Component {
 
   render() {
     const { isFetching } = this.props.settings;
-    console.log(isFetching)
     if(isFetching) {
       return (
-        <div className="loading">
-          <h1>Loading...</h1>
-        </div>
+        <RefereeLoading />
       );
     }
     return (
@@ -37,7 +32,7 @@ class RefereeConsole extends Component {
         <div className="container-fluid">
           <div className="row">
             <RefereeSidebar path={this.props.location.pathname} />
-            <RefereeRouter/>
+            <RefereeRouter settings={this.props.settings} />
           </div>
         </div>
       </div>

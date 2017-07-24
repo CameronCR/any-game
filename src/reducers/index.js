@@ -5,6 +5,7 @@ import team from './team';
 import sports from './sports';
 import users from './users';
 import venues from './venues';
+import games from './games';
 
 const rootReducer = combineReducers({
   settings,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   team,
   sports,
   users,
-  venues
+  venues,
+  games
 });
 
 export default rootReducer;

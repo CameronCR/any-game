@@ -11,3 +11,8 @@ export function shortenFileName(fileName) {
     return fileName;
   }
 }
+
+export function formatDate(dateString) {
+  let formattedDate = new Date(dateString);
+
+}

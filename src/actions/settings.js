@@ -7,7 +7,7 @@ export function loadSettings() {
   return function(dispatch) {
     dispatch(requestSettings(true));
     ref.on('value', function (snapshot) {
-      dispatch(loadSettingsSuccess(snapshot.val().keys));
+      setTimeout(dispatch(loadSettingsSuccess(snapshot.val().keys)), 3000);
     });
   };
 }
