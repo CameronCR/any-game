@@ -6,25 +6,6 @@ import * as teamActions from '../../actions/teams';
 
 import TeamSelectionPreview from './TeamSelectionPreview';
 
-const teams = [
-  {
-    name: 'Lakers',
-    image: 'g1.jpg'
-  },
-  {
-    name: 'Rams',
-    image: 'g2.jpg'
-  },
-  {
-    name: 'Bitches',
-    image: 'g3.jpg'
-  },
-  {
-    name: 'Dodgers',
-    image: 'g4.jpg'
-  }
-];
-
 class TeamSelection extends Component {
   constructor(props) {
     super(props);
