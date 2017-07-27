@@ -7,7 +7,7 @@ export default function games(state = [], action) {
       return action.games;
 
     case actionTypes.REQUEST_GAMES:
-      return { isFetching: true };
+      return { isFetching: action.status };
 
     default:
       return state;

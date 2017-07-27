@@ -17,15 +17,18 @@ export function loadGamesForTeam(slug, username, password){
     axios.get(requestData.url, requestData.settings).then((response) => {
       let data = response.data.events;
       dispatch(loadGamesSuccess(data));
-      //dispatch(loadGamesForTeamAfterDate(requestData, data));
+      dispatch(loadGamesForTeamAfterDate(requestData, data));
     });
   };
 }
 
 export function loadGamesForTeamAfterDate(requestData, prevResponseData){
-  console.log(requestData);
-  console.log(prevResponseData);
-  let url = 'https://api.seatgeek.com/2/events?datetime_utc.gt=2012-09-07';
+  let lastGameTime = prevResponseData[prevResponseData.length - 1].datetime_utc;
+  console.log(lastGameTime);
+  let url = 'https://api.seatgeek.com/2/events?datetime_utc.gt=';
+  console.log(url);
+  let totalUrl = url + lastGameTime
+  console.log(totalUrl);
 }
 
 
