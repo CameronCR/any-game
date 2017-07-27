@@ -1,34 +1,47 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
-export function loadGamesForTeam(slug, username, password){
-  let url = "https://api.seatgeek.com/2/events?performers.slug=" + slug;
-  let requestData = {
-    "settings": {
-      "auth": {
-        username: username,
-        password: password
-      }
-    },
-    "url": url
+export function loadGames(settings, slug){
+  let auth = {
+    username: settings.clientId,
+    password: settings.secret
   };
+
+  let url = "https://api.seatgeek.com/2/events?";
+  if(slug) {
+    url = url + "performers.slug=" + slug;
+  }
+
+  let requestData = {
+    url: url,
+    settings: auth
+  };
+
   return function(dispatch) {
     dispatch(requestGames(true));
     axios.get(requestData.url, requestData.settings).then((response) => {
       let data = response.data.events;
       dispatch(loadGamesSuccess(data));
-      dispatch(loadGamesForTeamAfterDate(requestData, data));
+      //dispatch(loadGamesForTeamAfterDate(requestData, data));
     });
   };
 }
 
+export function preloadGames(requestData, prevResponseData){
+
+}
+
 export function loadGamesForTeamAfterDate(requestData, prevResponseData){
-  let lastGameTime = prevResponseData[prevResponseData.length - 1].datetime_utc;
-  console.log(lastGameTime);
-  let url = 'https://api.seatgeek.com/2/events?datetime_utc.gt=';
-  console.log(url);
-  let totalUrl = url + lastGameTime
-  console.log(totalUrl);
+  let date = prevResponseData[prevResponseData.length - 1].datetime_utc.substring(0,10);
+  let totalUrl = requestData.url + '?datetime_utc.gt=' + date;
+  requestData.url = totalUrl;
+  return function(dispatch) {
+    dispatch(requestGames(true));
+    axios.get(requestData.url, requestData.settings).then((response) => {
+      let data = response.data.events;
+      dispatch(addGamesSuccess(data));
+    });
+  };
 }
 
 
@@ -46,7 +59,12 @@ export function loadGamesSuccess(games) {
     games
   };
 }
-
+export function addGamesSuccess(games) {
+  return {
+    type: actionTypes.ADD_GAMES_SUCCESS,
+    games
+  };
+}
 export function loadGamesFail(error) {
 
 }

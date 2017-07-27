@@ -26,7 +26,7 @@ class Games extends Component {
       this.setState({
         error: false
       });
-      this.props.gameActions.loadGamesForTeam(event.target.value, this.props.settings.settings.seatGeek.clientId, this.props.settings.settings.seatGeek.secret);
+      this.props.gameActions.loadGames(this.props.settings.settings.seatGeek, event.target.value);
     } else {
       this.setState({
         error: true,
@@ -41,6 +41,7 @@ class Games extends Component {
 
   gamesList(){
     const clickGame = () => this.setGame;
+    console.log(this.props.games)
     if(this.props.games.isFetching) {
       return <RefereeLoading />;
     } else if(this.props.games.length > 0) {
