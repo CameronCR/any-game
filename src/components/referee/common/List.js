@@ -11,7 +11,11 @@ class List extends Component {
 
   previewListing(item, index){
     const handleClick = () => this.props.setItem(item);
-    return <ListPreview item={item} key={index} handleClick={handleClick} />;
+    return (
+      <ListPreview item={item}
+                   key={index}
+                   handleClick={handleClick} />
+    );
   }
 
   render() {
@@ -27,7 +31,12 @@ class List extends Component {
 
 List.propTypes = {
   list: PropTypes.array.isRequired,
-  setItem: PropTypes.func.isRequired
+  setItem: PropTypes.func.isRequired,
+  preview: PropTypes.string
+};
+
+List.defaultProps = {
+  preview: 'ListPreview'
 };
 
 export default List;

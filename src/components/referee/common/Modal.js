@@ -8,7 +8,7 @@ function Modal(props) {
   return(
     <div>
       <div className="modal fade" id="modal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div className="modal-dialog" role="document">
+        <div className="modal-dialog modal-lg" role="document">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="modalLabel">{props.modalTitle}</h5>
@@ -17,9 +17,7 @@ function Modal(props) {
               </button>
             </div>
             <div className="modal-body">
-              <div className="col-md-8">
-                <ModalForm {...props} />
-              </div>
+              <ModalForm {...props} />
             </div>
             <div className="modal-footer">
               {deleteButton(props.item.name, props.deleteButton)}

@@ -7,13 +7,13 @@ import Users from '../components/referee/users/Users';
 import Games from '../components/referee/games/Games';
 import Venues from '../components/referee/venues/Venues';
 
-const RefereeRouter = () => {
+const RefereeRouter = (props) => {
   return(
       <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
         <Route path="/referee/sports" component={Sports} />
         <Route path="/referee/teams" component={Teams} />
         <Route path="/referee/users" component={Users} />
-        <Route path="/referee/games" component={Games} />
+        <Route path="/referee/games" component={Games} settings={props.settings} />
         <Route path="/referee/venues" component={Venues} />
       </main>
   );

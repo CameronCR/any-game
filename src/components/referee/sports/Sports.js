@@ -16,6 +16,7 @@ class Sports extends Component {
       sport: {
         name: '',
         slug: '',
+        acronym: '',
         openingDate: date
       },
       modalTitle: 'Add a new Sport'
@@ -43,7 +44,13 @@ class Sports extends Component {
     if(typeof sport.slug == 'undefined') {
       sport['slug'] = 'No Slug';
     }
-    console.log(sport)
+    this.setState({
+      sport: {
+        name: '',
+        slug: '',
+        acronym: ''
+      }
+    });
     this.setState({
       sport: sport,
       modalTitle: title
@@ -64,6 +71,7 @@ class Sports extends Component {
       sport: {
         name: '',
         slug: '',
+        acronym: '',
         openingDate: date
       },
       modalTitle: 'Add a new Sport'

@@ -16,7 +16,6 @@ import teamsDevState from './TeamsDevState';
 
 import * as firebase from '../../../lib/firebase';
 
-
 class Teams extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +25,7 @@ class Teams extends Component {
         location: '',
         city: '',
         sport: '',
+        slug: '',
         venue: '',
         fileName: '',
         seatingChart: {}
@@ -105,6 +105,7 @@ class Teams extends Component {
           sport: '',
           venue: '',
           fileName: '',
+          slug: '',
           seatingChart: {}
         },
         modalTitle: 'Add a new Team'
