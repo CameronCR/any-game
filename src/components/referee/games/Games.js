@@ -35,13 +35,12 @@ class Games extends Component {
     }
   }
 
-  setGame(game){
-    console.log(game);
+  moreGames(){
+    this.props.gameActions.loadGamesForTeamAfterDate();
   }
 
   gamesList(){
     const clickGame = () => this.setGame;
-    console.log(this.props.games)
     if(this.props.games.isFetching) {
       return <RefereeLoading />;
     } else if(this.props.games.length > 0) {
