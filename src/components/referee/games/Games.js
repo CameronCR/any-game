@@ -18,7 +18,6 @@ class Games extends Component {
     };
     this.props.teamActions.loadTeams();
     this.getGames = this.getGames.bind(this);
-    this.setGame = this.setGame.bind(this);
   }
 
   getGames(event){
