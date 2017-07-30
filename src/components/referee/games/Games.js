@@ -19,8 +19,8 @@ class Games extends Component {
     this.filterGames = this.filterGames.bind(this);
     this.moreGames = this.moreGames.bind(this);
     this.createGame = this.createGame.bind(this);
-    this.props.gameActions.loadGames();
-
+    this.reloadGames = this.reloadGames.bind(this);
+    this.props.gameActions.loadGames(false);
   }
 
   filterGames(event){
@@ -34,6 +34,10 @@ class Games extends Component {
         errorMessage: "No Team Slug"
       });
     }
+  }
+
+  reloadGames(event) {
+    this.props.gameActions.loadGames(event.target.checked);
   }
 
   moreGames(event){
@@ -75,19 +79,13 @@ class Games extends Component {
         <h1>Games Admin</h1>
         <div className="col-md-3">
           {this.state.error ? <div className="alert alert-warning" role="alert">{this.state.errorMessage}</div> : <div></div>}
-          <select name="sport"
-                  className="form-control"
-                  onChange={this.filterGames} >
-            <option value="all">Pick Team</option>
-            {this.props.teams.map((option) => {
-              if(option.slug) {
-                return <option key={option.name} value={option.slug}>{option.name}</option>;
-              } else {
-                return <option key={option.name} value="no-slug">{option.name}</option>;
-              }
-            })}
-          </select>
-          <br />
+        </div>
+        <div className="col-md-3">
+          <label className="custom-control custom-checkbox">
+            <input type="checkbox" className="custom-control-input" onChange={this.reloadGames} />
+            <span className="custom-control-indicator"></span>
+            <span className="custom-control-description">View only future games</span>
+          </label>
         </div>
         {this.gamesList()}
       </div>

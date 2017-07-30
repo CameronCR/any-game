@@ -5,6 +5,15 @@ import { nextDay } from '../lib/utilities';
 
 const ref = firebase.db.ref('games');
 
+//Utility
+function sortGamesByDayAndDispatch(snapshot, dispatch){
+  let games = [];
+  snapshot.forEach(function(child) {
+    games.push(child.val());
+  });
+  dispatch(loadGamesSuccess(games));
+}
+
 //Actions
 export function loadGamesFromServer(settings, slug){
   let auth = {
@@ -27,11 +36,19 @@ export function loadGamesFromServer(settings, slug){
   };
 }
 
-export function loadGames(){
+export function loadGames(onlyFuture){
   return function(dispatch) {
-    ref.orderByChild('datetime_local').on('value', function(snapshot) {
-      dispatch(loadGamesSuccess(Object.values(snapshot.val())));
-    });
+    if(onlyFuture) {
+      let now = new Date();
+      let startAt = now.toISOString();
+      ref.orderByChild('datetime_local').startAt(startAt).on('value', function(snapshot) {
+        sortGamesByDayAndDispatch(snapshot, dispatch);
+      });
+    } else {
+      ref.orderByChild('datetime_local').on('value', function(snapshot) {
+        sortGamesByDayAndDispatch(snapshot, dispatch);
+      });
+    }
   };
 }
 
