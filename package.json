@@ -21,6 +21,7 @@
     "firebase": "^4.0.0",
     "i": "^0.3.5",
     "jquery": "2.2.3",
+    "logrocket": "^0.5.2",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-bootstrap": "^0.30.8",

@@ -6,7 +6,6 @@ import * as gameActions from '../../../actions/games';
 import * as teamActions from '../../../actions/teams';
 
 import RefereeLoading from '../RefereeLoading';
-
 import GamesList from './GamesList';
 
 class Games extends Component {
@@ -18,7 +17,6 @@ class Games extends Component {
     };
     this.props.teamActions.loadTeams();
     this.getGames = this.getGames.bind(this);
-    this.setGame = this.setGame.bind(this);
   }
 
   getGames(event){
@@ -40,9 +38,8 @@ class Games extends Component {
   }
 
   gamesList(){
-    const clickGame = () => this.setGame;
     if(this.props.games.isFetching) {
-      return <RefereeLoading />;
+      return <RefereeLoading heightOffset="20" />;
     } else if(this.props.games.length > 0) {
       return (<GamesList list={this.props.games}
                          setItem={this.setGame} />
@@ -72,7 +69,6 @@ class Games extends Component {
               } else {
                 return <option key={option.name} value="no-slug">{option.name}</option>;
               }
-
             })}
           </select>
           <br />
