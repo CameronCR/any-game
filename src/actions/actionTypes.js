@@ -23,5 +23,6 @@ export const REFEREE_CONSOLE_LOADING = 'REFEREE_CONSOLE_LOADING';
 export const ACTIVE_USERS = 'ACTIVE_USERS';
 export const USER_ERROR = 'USER_ERROR';
 
+//Settings
 export const SETTINGS = 'SETTINGS';
 export const REQUEST_SETTINGS = 'REQUEST_SETTINGS';

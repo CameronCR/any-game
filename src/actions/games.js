@@ -2,6 +2,7 @@ import axios from 'axios';
 import * as actionTypes from './actionTypes';
 import { nextDay } from '../lib/utilities';
 
+//Actions
 export function loadGames(settings, slug){
   let auth = {
     username: settings.clientId,
@@ -9,9 +10,7 @@ export function loadGames(settings, slug){
   };
 
   let url = "https://api.seatgeek.com/2/events?";
-  if(slug) {
-    url = url + "performers.slug=" + slug;
-  }
+  url = url + "performers.slug=" + slug;
   let requestData = {
     url: url,
     settings: {auth}
@@ -48,6 +47,7 @@ export function loadGamesForTeamAfterDate(settings, prevResponseData){
   };
 }
 
+//To Reducers
 export function requestGames(status) {
   return {
     type: actionTypes.REQUEST_GAMES,
@@ -62,12 +62,10 @@ export function loadGamesSuccess(games, slug) {
     games
   };
 }
+
 export function addGamesSuccess(games) {
   return {
     type: actionTypes.ADD_GAMES_SUCCESS,
     games
   };
-}
-export function loadGamesFail(error) {
-
 }
