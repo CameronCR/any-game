@@ -8,17 +8,17 @@ import List from '../common/List';
 import Modal from '../common/Modal';
 import SportModalForm from './SportModalForm';
 
+let sportObj = {
+  name: '',
+  slug: '',
+  leagueAcronym: ''
+};
+
 class Sports extends Component {
   constructor(props) {
-    let date = new Date();
     super(props);
     this.state = {
-      sport: {
-        name: '',
-        slug: '',
-        acronym: '',
-        openingDate: date
-      },
+      sport: sportObj,
       modalTitle: 'Add a new Sport'
     };
     this.updateFormState = this.updateFormState.bind(this);
@@ -41,18 +41,9 @@ class Sports extends Component {
 
   setSport(sport) {
     let title = 'Edit ' + sport.name;
-    if(typeof sport.slug == 'undefined') {
-      sport['slug'] = 'No Slug';
-    }
+    let sportSet = Object.assign({}, sportObj, sport);
     this.setState({
-      sport: {
-        name: '',
-        slug: '',
-        acronym: ''
-      }
-    });
-    this.setState({
-      sport: sport,
+      sport: sportSet,
       modalTitle: title
     });
   }
@@ -66,14 +57,8 @@ class Sports extends Component {
   }
 
   clearSport() {
-    let date = new Date();
     this.setState({
-      sport: {
-        name: '',
-        slug: '',
-        acronym: '',
-        openingDate: date
-      },
+      sport: sportObj,
       modalTitle: 'Add a new Sport'
     });
   }
