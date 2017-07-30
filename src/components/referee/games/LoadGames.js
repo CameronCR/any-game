@@ -19,6 +19,7 @@ class LoadGames extends Component {
     this.getGames = this.getGames.bind(this);
     this.moreGames = this.moreGames.bind(this);
     this.createGame = this.createGame.bind(this);
+    this.props.gameActions.clearLoaded();
   }
 
   getGames(event){

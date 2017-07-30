@@ -36,6 +36,13 @@ export function loadGames(){
   };
 }
 
+export function clearLoaded(){
+  return function(dispatch) {
+    let arr = [];
+    dispatch(loadGamesSuccess(arr));
+  };
+}
+
 export function loadGamesForTeamAfterDate(settings, prevResponseData){
   let authSettings = {
     auth: {

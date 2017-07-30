@@ -9,6 +9,7 @@ class GameList extends Component {
   constructor(props) {
     super(props);
     this.previewListing = this.previewListing.bind(this);
+    this.title = this.title.bind(this);
   }
 
   previewListing(item, index){
@@ -20,10 +21,18 @@ class GameList extends Component {
     );
   }
 
+  title(){
+    if(this.props.isLocal) {
+      return <h4>{this.props.list.length} games found</h4>;
+    } else {
+      return <h4>Upcoming {this.props.list.length} games</h4>;
+    }
+  }
+
   render() {
     return (
       <div className="col-md-12">
-        <h4>Upcoming {this.props.list.length} games</h4>
+        {this.title()}
         <div className="row">
           {this.props.list.map(this.previewListing)}
           <div className="card" style={{width: '20rem', margin: '10px'}}>
