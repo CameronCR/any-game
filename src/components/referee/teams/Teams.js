@@ -74,11 +74,8 @@ class Teams extends Component {
 
   setTeam(team) {
     let title = 'Edit ' + team.name;
-    //this.props.teamActions.loadSeatingChart(team);
     team['seatingChart'] = {};
-
-    let ref = firebase.storage.ref('seatingChart');
-
+    let teamSet = Object.assign({}, teamObj, team);
     this.setState({
       team: team,
       modalTitle: title
