@@ -32,20 +32,14 @@ export function loadGamesForTeamAfterDate(settings, prevResponseData){
       password: settings.secret
     }
   };
-  let lastRecord = prevResponseData[prevResponseData.length - 1];
+  let lastRecord = prevResponseData.gamesArray[prevResponseData.gamesArray.length - 1];
   let date = lastRecord.datetime_utc.substring(0,10);
   let url = 'https://api.seatgeek.com/2/events?';
   let teams = lastRecord.performers;
-  let slug = '';
-  if(teams[0].home_team) {
-    slug = teams[0].slug;
-  } else {
-    slug = teams[1].slug;
-  }
+  let slug = prevResponseData.team;
   url = url + 'performers.slug=' + slug;
   url = url + '&datetime_utc.gt=' + date;
   return function(dispatch) {
-    dispatch(requestGames(true));
     axios.get(url, authSettings).then((response) => {
       let data = response.data.events;
       dispatch(addGamesSuccess(data));

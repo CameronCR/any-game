@@ -7,10 +7,11 @@ export default function games(state = [], action) {
       return {gamesArray: action.games, isFetching: false, team: action.team};
 
     case actionTypes.ADD_GAMES_SUCCESS:
-      return state.concat(action.games);
+      let games = state.gamesArray.concat(action.games);
+      return {gamesArray: games, isFetching: false, team: state.team};
 
     case actionTypes.REQUEST_GAMES:
-      return { isFetching: action.status };
+      return { gamesArray: state.gamesArray, isFetching: action.status, team: state.team };
 
     default:
       return state;

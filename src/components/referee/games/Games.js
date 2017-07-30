@@ -34,8 +34,9 @@ class Games extends Component {
     }
   }
 
-  moreGames(){
-    this.props.gameActions.loadGamesForTeamAfterDate(this.props.settings.settings.seatGeek, this.props.games.gamesArray);
+  moreGames(event){
+    event.preventDefault();
+    this.props.gameActions.loadGamesForTeamAfterDate(this.props.settings.settings.seatGeek, this.props.games);
   }
 
   gamesList(){
