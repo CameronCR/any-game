@@ -8,7 +8,7 @@ import * as teamActions from '../../../actions/teams';
 import RefereeLoading from '../RefereeLoading';
 import GamesList from './GamesList';
 
-class Games extends Component {
+class LoadGames extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,8 +19,6 @@ class Games extends Component {
     this.getGames = this.getGames.bind(this);
     this.moreGames = this.moreGames.bind(this);
     this.createGame = this.createGame.bind(this);
-    this.props.gameActions.loadGames();
-
   }
 
   getGames(event){
@@ -28,6 +26,7 @@ class Games extends Component {
       this.setState({
         error: false
       });
+      this.props.gameActions.loadGamesFromServer(this.props.settings.settings.seatGeek, event.target.value);
     } else {
       this.setState({
         error: true,
@@ -71,7 +70,7 @@ class Games extends Component {
   render() {
     return (
       <div>
-        <h1>Games Admin</h1>
+        <h1>Load Games Admin</h1>
         <div className="col-md-3">
           {this.state.error ? <div className="alert alert-warning" role="alert">{this.state.errorMessage}</div> : <div></div>}
           <select name="sport"
@@ -110,4 +109,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Games);
+export default connect(mapStateToProps, mapDispatchToProps)(LoadGames);

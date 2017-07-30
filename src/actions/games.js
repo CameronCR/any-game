@@ -1,9 +1,12 @@
 import axios from 'axios';
+import * as firebase from '../lib/firebase';
 import * as actionTypes from './actionTypes';
 import { nextDay } from '../lib/utilities';
 
+const ref = firebase.db.ref('games');
+
 //Actions
-export function loadGames(settings, slug){
+export function loadGamesFromServer(settings, slug){
   let auth = {
     username: settings.clientId,
     password: settings.secret
@@ -21,6 +24,14 @@ export function loadGames(settings, slug){
     axios.get(requestData.url, requestData.settings).then((response) => {
       let data = response.data.events;
       dispatch(loadGamesSuccess(data, slug));
+    });
+  };
+}
+
+export function loadGames(){
+  return function(dispatch) {
+    ref.orderByChild('datetime_local').on('value', function(snapshot) {
+      dispatch(loadGamesSuccess(Object.values(snapshot.val())));
     });
   };
 }
@@ -47,6 +58,27 @@ export function loadGamesForTeamAfterDate(settings, prevResponseData){
   };
 }
 
+export function saveGame(game){
+  let postKey;
+  return function(dispatch) {
+    ref.orderByChild('id').equalTo(game.id).once('value', function(snapshot) {
+      let exists = (snapshot.val() !== null);
+      if(exists) {
+        postKey = Object.keys(snapshot.val())[0];
+      } else {
+        postKey = ref.push().key;
+      }
+      firebase.db.ref('games/' + postKey).update(game, function(error) {
+        if (error) {
+          dispatch(createGameSuccess(false));
+        } else {
+          dispatch(createGameSuccess(true));
+        }
+      });
+    });
+  };
+}
+
 //To Reducers
 export function requestGames(status) {
   return {
@@ -67,5 +99,12 @@ export function addGamesSuccess(games) {
   return {
     type: actionTypes.ADD_GAMES_SUCCESS,
     games
+  };
+}
+
+export function createGameSuccess(status) {
+  return {
+    type: actionTypes.CREATE_GAME_SUCCESS,
+    status
   };
 }

@@ -11,6 +11,9 @@ export default function games(state = [], action) {
       return {gamesArray: games, isFetching: false, team: state.team};
     }
 
+    case actionTypes.CREATE_GAME_SUCCESS:
+      return state;
+
     case actionTypes.REQUEST_GAMES:
       return { gamesArray: state.gamesArray, isFetching: action.status, team: state.team };
 
