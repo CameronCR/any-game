@@ -16,3 +16,10 @@ export function formatDate(dateString) {
   let formattedDate = new Date(dateString);
   return formattedDate.toLocaleDateString();
 }
+
+export function nextDay(dateString) {
+  let date = new Date(dateString);
+  date.setDate(date.getDate() + 1);
+  let nextDayString = date.toISOString();
+  return nextDayString;
+}

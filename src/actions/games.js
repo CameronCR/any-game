@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
+import { nextDay } from '../lib/utilities';
 
 export function loadGames(settings, slug){
   let auth = {
@@ -33,7 +34,7 @@ export function loadGamesForTeamAfterDate(settings, prevResponseData){
     }
   };
   let lastRecord = prevResponseData.gamesArray[prevResponseData.gamesArray.length - 1];
-  let date = lastRecord.datetime_utc.substring(0,10);
+  let date = nextDay(lastRecord.datetime_utc.substring(0,10));
   let url = 'https://api.seatgeek.com/2/events?';
   let teams = lastRecord.performers;
   let slug = prevResponseData.team;
