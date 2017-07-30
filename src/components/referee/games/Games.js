@@ -35,16 +35,22 @@ class Games extends Component {
   }
 
   moreGames(){
-    this.props.gameActions.loadGamesForTeamAfterDate(this.props.settings.settings.seatGeek, this.props.games);
+    this.props.gameActions.loadGamesForTeamAfterDate(this.props.settings.settings.seatGeek, this.props.games.gamesArray);
   }
 
   gamesList(){
     if(this.props.games.isFetching) {
       return <RefereeLoading heightOffset="20" />;
-    } else if(this.props.games.length > 0) {
-      return (<GamesList list={this.props.games}
+    } else if(this.props.games.length != 0 && this.props.games.gamesArray.length > 0) {
+      return (<GamesList list={this.props.games.gamesArray}
                          setItem={this.setGame}
                          moreGames={this.moreGames} />
+      );
+    } else if(this.props.games.team != undefined && this.props.games.gamesArray.length == 0) {
+      return (
+        <div className="col-md-4">
+          <div className="alert alert-warning" role="alert">No games found.</div>
+        </div>
       );
     } else {
       return (
