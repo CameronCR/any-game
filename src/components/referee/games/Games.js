@@ -16,14 +16,14 @@ class Games extends Component {
       errorMessage: ''
     };
     this.props.teamActions.loadTeams();
-    this.getGames = this.getGames.bind(this);
+    this.filterGames = this.filterGames.bind(this);
     this.moreGames = this.moreGames.bind(this);
     this.createGame = this.createGame.bind(this);
     this.props.gameActions.loadGames();
 
   }
 
-  getGames(event){
+  filterGames(event){
     if(event.target.value != 'no-slug'){
       this.setState({
         error: false
@@ -77,7 +77,7 @@ class Games extends Component {
           {this.state.error ? <div className="alert alert-warning" role="alert">{this.state.errorMessage}</div> : <div></div>}
           <select name="sport"
                   className="form-control"
-                  onChange={this.getGames} >
+                  onChange={this.filterGames} >
             <option value="all">Pick Team</option>
             {this.props.teams.map((option) => {
               if(option.slug) {
