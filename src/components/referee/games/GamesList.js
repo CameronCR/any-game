@@ -30,7 +30,10 @@ class GameList extends Component {
             <div className="card-block">
               <br />
               <br />
-              <a href="#" style={{marginRight: 'auto', marginLeft: 'auto', display: 'block'}} className="col-md-8 btn btn-outline-primary">Load More Games</a>
+              <a href="#"
+                 onClick={this.props.moreGames}
+                 style={{marginRight: 'auto', marginLeft: 'auto', display: 'block'}}
+                 className="col-md-8 btn btn-outline-primary">Load More Games</a>
               <br />
               <br />
             </div>
@@ -43,7 +46,7 @@ class GameList extends Component {
 
 GameList.propTypes = {
   list: PropTypes.array.isRequired,
-  setItem: PropTypes.func.isRequired
+  //setItem: PropTypes.func.isRequired
 };
 
 export default GameList;

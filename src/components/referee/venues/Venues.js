@@ -8,13 +8,19 @@ import List from '../common/List';
 import Modal from '../common/Modal';
 import VenueModalForm from './VenueModalForm';
 
+const venueObj = {
+  name: '',
+  address: '',
+  city: '',
+  state: '',
+  zip: ''
+};
+
 class Venues extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      venue: {
-        name: ''
-      },
+      venue: venueObj,
       modalTitle: 'Add a new Venue'
     };
     this.updateFormState = this.updateFormState.bind(this);
@@ -37,8 +43,10 @@ class Venues extends Component {
 
   setVenue(venue) {
     let title = 'Edit ' + venue.name;
+    let venueSet = Object.assign({}, venueObj, venue);
+    this.clearVenue();
     this.setState({
-      venue: venue,
+      venue: venueSet,
       modalTitle: title
     });
   }
@@ -53,9 +61,7 @@ class Venues extends Component {
 
   clearVenue() {
     this.setState({
-      venue: {
-        name: ''
-      },
+      venue: venueObj,
       modalTitle: 'Add a new venue'
     });
   }

@@ -17,6 +17,7 @@ class Games extends Component {
     };
     this.props.teamActions.loadTeams();
     this.getGames = this.getGames.bind(this);
+    this.moreGames = this.moreGames.bind(this);
   }
 
   getGames(event){
@@ -34,7 +35,7 @@ class Games extends Component {
   }
 
   moreGames(){
-    this.props.gameActions.loadGamesForTeamAfterDate();
+    this.props.gameActions.loadGamesForTeamAfterDate(this.props.settings.settings.seatGeek, this.props.games);
   }
 
   gamesList(){
@@ -42,7 +43,8 @@ class Games extends Component {
       return <RefereeLoading heightOffset="20" />;
     } else if(this.props.games.length > 0) {
       return (<GamesList list={this.props.games}
-                         setItem={this.setGame} />
+                         setItem={this.setGame}
+                         moreGames={this.moreGames} />
       );
     } else {
       return (

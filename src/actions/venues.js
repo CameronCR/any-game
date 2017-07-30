@@ -13,12 +13,21 @@ export function loadVenues() {
 }
 
 export function saveVenue(venue) {
+  let postKey;
+  ref.orderByChild('name').equalTo(venue.name).once('value', function (snapshot) {
+    let exists = (snapshot.val() !== null);
+    if (exists) {
+      postKey = Object.keys(snapshot.val())[0];
+    } else {
+      postKey = ref.push().key;
+    }
+  });
   return function(dispatch) {
-    ref.push(venue, function(error) {
-      if (error)
-        dispatch(createLocationSuccess(false));
-      else {
-        dispatch(createLocationSuccess(true));
+    firebase.db.ref('values/' + postKey).update(venue, function (error){
+      if (error) {
+        dispatch(createVenueSuccess(false));
+      } else {
+        dispatch(createVenueSuccess(true));
       }
     });
   };
@@ -31,7 +40,7 @@ export function removeVenue(venue) {
   });
 }
 
-export function createLocationSuccess(status) {
+export function createVenueSuccess(status) {
   return {
     type: actionTypes.CREATE_VENUE_SUCCESS,
     status

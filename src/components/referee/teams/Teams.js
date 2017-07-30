@@ -16,20 +16,22 @@ import teamsDevState from './TeamsDevState';
 
 import * as firebase from '../../../lib/firebase';
 
+const teamObj = {
+  name: '',
+  location: '',
+  city: '',
+  sport: '',
+  slug: '',
+  venue: '',
+  fireName: '',
+  seatingChart: {}
+};
+
 class Teams extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      team: {
-        name: '',
-        location: '',
-        city: '',
-        sport: '',
-        slug: '',
-        venue: '',
-        fileName: '',
-        seatingChart: {}
-      },
+      team: teamObj,
       modalTitle: 'Add a new Team'
     };
     this.updateFormState = this.updateFormState.bind(this);
@@ -75,10 +77,7 @@ class Teams extends Component {
     //this.props.teamActions.loadSeatingChart(team);
     team['seatingChart'] = {};
 
-
     let ref = firebase.storage.ref('seatingChart');
-
-
 
     this.setState({
       team: team,
@@ -98,16 +97,7 @@ class Teams extends Component {
     let dev = false;
     if(!dev) {
       this.setState({
-        team: {
-          name: '',
-          location: '',
-          city: '',
-          sport: '',
-          venue: '',
-          fileName: '',
-          slug: '',
-          seatingChart: {}
-        },
+        team: teamObj,
         modalTitle: 'Add a new Team'
       });
     } else {

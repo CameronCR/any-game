@@ -11,40 +11,47 @@ export function loadGames(settings, slug){
   if(slug) {
     url = url + "performers.slug=" + slug;
   }
-
   let requestData = {
     url: url,
-    settings: auth
+    settings: {auth}
   };
 
   return function(dispatch) {
     dispatch(requestGames(true));
     axios.get(requestData.url, requestData.settings).then((response) => {
       let data = response.data.events;
-      dispatch(loadGamesSuccess(data));
-      //dispatch(loadGamesForTeamAfterDate(requestData, data));
+      dispatch(loadGamesSuccess(data, slug));
     });
   };
 }
 
-export function preloadGames(requestData, prevResponseData){
-
-}
-
-export function loadGamesForTeamAfterDate(requestData, prevResponseData){
-  let date = prevResponseData[prevResponseData.length - 1].datetime_utc.substring(0,10);
-  let totalUrl = requestData.url + '?datetime_utc.gt=' + date;
-  requestData.url = totalUrl;
+export function loadGamesForTeamAfterDate(settings, prevResponseData){
+  let authSettings = {
+    auth: {
+      username: settings.clientId,
+      password: settings.secret
+    }
+  };
+  let lastRecord = prevResponseData[prevResponseData.length - 1];
+  let date = lastRecord.datetime_utc.substring(0,10);
+  let url = 'https://api.seatgeek.com/2/events?';
+  let teams = lastRecord.performers;
+  let slug = '';
+  if(teams[0].home_team) {
+    slug = teams[0].slug;
+  } else {
+    slug = teams[1].slug;
+  }
+  url = url + 'performers.slug=' + slug;
+  url = url + '&datetime_utc.gt=' + date;
   return function(dispatch) {
     dispatch(requestGames(true));
-    axios.get(requestData.url, requestData.settings).then((response) => {
+    axios.get(url, authSettings).then((response) => {
       let data = response.data.events;
       dispatch(addGamesSuccess(data));
     });
   };
 }
-
-
 
 export function requestGames(status) {
   return {
@@ -53,9 +60,10 @@ export function requestGames(status) {
   };
 }
 
-export function loadGamesSuccess(games) {
+export function loadGamesSuccess(games, slug) {
   return {
     type: actionTypes.LOAD_GAMES_SUCCESS,
+    team: slug,
     games
   };
 }

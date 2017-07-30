@@ -7,7 +7,7 @@ function Modal(props) {
   const ModalForm = props.modalForm;
   return(
     <div>
-      <div className="modal fade" id="modal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+      <div className="modal fade" tabIndex="-1" id="modal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div className="modal-dialog modal-lg" role="document">
           <div className="modal-content">
             <div className="modal-header">
