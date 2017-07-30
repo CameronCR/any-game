@@ -23,7 +23,7 @@ export function saveVenue(venue) {
     }
   });
   return function(dispatch) {
-    firebase.db.ref('values/' + postKey).update(venue, function (error){
+    firebase.db.ref('venues/' + postKey).update(venue, function (error){
       if (error) {
         dispatch(createVenueSuccess(false));
       } else {

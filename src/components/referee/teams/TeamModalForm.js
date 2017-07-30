@@ -67,13 +67,6 @@ function TeamModalForm(props) {
               </select>
             </div>
           </div>
-          <br/>
-          <label className="btn btn-info">Seating Chart
-            <input type="file"
-                   onChange={props.selectFile}
-                   hidden />
-          </label>
-          <label>&nbsp;{props.item.fileName}</label>
         </div>
       </form>
     </div>

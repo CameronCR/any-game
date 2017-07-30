@@ -12,19 +12,6 @@ function sortTeamsBySportAndDispatch(snapshot, dispatch){
   dispatch(loadTeamsSuccess(teams));
 }
 
-function uploadSeatingChart(team, postKey){
-  let fileName;
-  if(typeof team.venue !== 'undefined') {
-    fileName = team.venue;
-  } else {
-    fileName = 'No Location';
-  }
-  let storageRef = firebase.storage.ref('seatingCharts/' + postKey + '/' + fileName);
-  storageRef.put(team.seatingChart).then(function(snapshot) {
-    console.log('Uploaded seating chart.');
-  });
-}
-
 //Actions
 export function loadTeams() {
   return function(dispatch) {
@@ -53,12 +40,6 @@ export function saveTeam(team) {
       postKey = firebase.db.ref('teams/').push().key;
     }
   });
-  if(typeof team.seatingChart !== 'undefined') {
-    uploadSeatingChart(team, postKey);
-    team['seatingChartPresent'] = team.location;
-  } else {
-    team['seatingChartPresent'] = 'false';
-  }
   return function(dispatch) {
     firebase.db.ref('teams/' + postKey).update(team, function(error) {
       if (error)
@@ -89,12 +70,5 @@ export function loadTeamsSuccess(teams) {
   return {
     type: actionTypes.LOAD_TEAMS_SUCCESS,
     teams
-  };
-}
-
-export function loadSeatingChartSuccess(file) {
-  return {
-    type: actionTypes.LOAD_SEATING_CHART_SUCCESS,
-    file
   };
 }

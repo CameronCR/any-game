@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as teamsActions from '../../../actions/teams';
-import * as teamActions from '../../../actions/team';
+import * as teamActions from '../../../actions/teams';
 import * as sportActions from '../../../actions/sports';
 import * as venueActions from '../../../actions/venues';
 
@@ -22,9 +21,7 @@ const teamObj = {
   city: '',
   sport: '',
   slug: '',
-  venue: '',
-  fireName: '',
-  seatingChart: {}
+  venue: ''
 };
 
 class Teams extends Component {
@@ -39,12 +36,11 @@ class Teams extends Component {
     this.setTeam = this.setTeam.bind(this);
     this.createTeam = this.createTeam.bind(this);
     this.removeTeam = this.removeTeam.bind(this);
-    this.selectFile = this.selectFile.bind(this);
     this.clearTeam = this.clearTeam.bind(this);
   }
 
   componentWillMount() {
-    this.props.teamsActions.loadTeams();
+    this.props.teamActions.loadTeams();
     this.props.sportActions.loadSports();
     this.props.venueActions.loadVenues();
   }
@@ -56,38 +52,30 @@ class Teams extends Component {
     this.setState({team: team});
   }
 
-  selectFile(event) {
-    let team = this.state.team;
-    team['seatingChart'] = event.target.files[0];
-    team['fileName'] = shortenFileName(team.seatingChart.name);
-    this.setState({team: team});
-  }
-
   filterBySport(event) {
     let selection = event.target.value;
     if (selection == "all"){
-      this.props.teamsActions.loadTeams();
+      this.props.teamActions.loadTeams();
     } else {
-      this.props.teamsActions.loadTeamsBySport(selection);
+      this.props.teamActions.loadTeamsBySport(selection);
     }
   }
 
   setTeam(team) {
     let title = 'Edit ' + team.name;
-    team['seatingChart'] = {};
     let teamSet = Object.assign({}, teamObj, team);
     this.setState({
-      team: team,
+      team: teamSet,
       modalTitle: title
     });
   }
 
   createTeam() {
-    this.props.teamsActions.saveTeam(this.state.team);
+    this.props.teamActions.saveTeam(this.state.team);
   }
 
   removeTeam() {
-    this.props.teamsActions.removeTeam(this.state.team);
+    this.props.teamActions.removeTeam(this.state.team);
   }
 
   clearTeam() {
@@ -130,7 +118,7 @@ class Teams extends Component {
 
                  sports={this.props.sports}
                  venues={this.props.venues}
-                 selectFile={this.selectFile}/>
+                 />
           <br />
           <List list={this.props.teams}
                 setItem={this.setTeam} />
@@ -151,7 +139,6 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    teamsActions: bindActionCreators(teamsActions, dispatch),
     teamActions: bindActionCreators(teamActions, dispatch),
     sportActions: bindActionCreators(sportActions, dispatch),
     venueActions: bindActionCreators(venueActions, dispatch)
