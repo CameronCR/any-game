@@ -1,25 +1,23 @@
-import * as actionTypes from './actionTypes';
 import * as firebase from '../lib/firebase';
+import * as actionTypes from './actionTypes';
+
+import * as loadingActions from './loading';
 
 let ref = firebase.db.ref('config');
 
+//Actions
 export function loadSettings() {
   return function(dispatch) {
-    dispatch(requestSettings(true));
+    dispatch(loadingActions.isLoading('refereeConsole'));
     ref.on('value', function (snapshot) {
-      setTimeout(dispatch(loadSettingsSuccess(snapshot.val().keys)), 3000);
+      dispatch(loadSettingsSuccess(snapshot.val().keys));
+      dispatch(loadingActions.notLoading('refereeConsole'));
     });
   };
 }
 
-export function requestSettings(status) {
-  return {
-    type: actionTypes.REQUEST_SETTINGS,
-    status
-  };
-}
-
-export function loadSettingsSuccess(settings) {
+//To Reducers
+function loadSettingsSuccess(settings) {
   return {
     type: actionTypes.SETTINGS,
     settings

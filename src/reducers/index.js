@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import settings from './settings';
+import loading from './loading';
 import teams from './teams';
 import sports from './sports';
 import users from './users';
@@ -8,6 +9,7 @@ import games from './games';
 import tickets from './tickets';
 
 const rootReducer = combineReducers({
+  loading,
   settings,
   teams,
   sports,

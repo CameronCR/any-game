@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import * as settingsActions from '../../actions/settings';
 import * as teamActions from '../../actions/teams';
+
 import RefereeRouter from '../../routers/RefereeRouter';
 import RefereeHeader from  './RefereeHeader';
 import RefereeSidebar from "./RefereeSidebar";
@@ -20,8 +21,8 @@ class RefereeConsole extends Component {
   }
 
   render() {
-    const { isFetching } = this.props.settings;
-    if(isFetching) {
+    let loadingState  = this.props.loading.refereeConsole;
+    if(loadingState) {
       return (
         <RefereeLoading />
       );
@@ -42,7 +43,8 @@ class RefereeConsole extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    settings: state.settings
+    settings: state.settings,
+    loading: state.loading
   };
 }
 
