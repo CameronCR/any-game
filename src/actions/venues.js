@@ -32,7 +32,6 @@ export function saveVenue(venue) {
   };
 }
 
-
 export function removeVenue(venue) {
   ref.orderByChild('name').equalTo(venue.name).on('child_added', function(snapshot) {
     snapshot.ref.remove();
