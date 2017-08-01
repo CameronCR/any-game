@@ -1,7 +1,10 @@
 import axios from 'axios';
+
 import * as firebase from '../lib/firebase';
-import * as actionTypes from './actionTypes';
 import { nextDay } from '../lib/utilities';
+import * as actionTypes from './actionTypes';
+
+import * as loadingActions from './loading';
 
 const ref = firebase.db.ref('games');
 
@@ -28,25 +31,29 @@ export function loadGamesFromServer(settings, slug){
   };
 
   return function(dispatch) {
-    dispatch(requestGames(true));
+    dispatch(loadingActions.isLoading('games'));
     axios.get(requestData.url, requestData.settings).then((response) => {
       let data = response.data.events;
       dispatch(loadGamesSuccess(data, slug));
+      dispatch(loadingActions.notLoading('games'));
     });
   };
 }
 
 export function loadGames(onlyFuture){
   return function(dispatch) {
+    dispatch(loadingActions.isLoading('games'));
     if(onlyFuture) {
       let now = new Date();
       let startAt = now.toISOString();
       ref.orderByChild('datetime_local').startAt(startAt).on('value', function(snapshot) {
         sortGamesByDayAndDispatch(snapshot, dispatch);
+        dispatch(loadingActions.notLoading('games'));
       });
     } else {
       ref.orderByChild('datetime_local').on('value', function(snapshot) {
         sortGamesByDayAndDispatch(snapshot, dispatch);
+        dispatch(loadingActions.notLoading('games'));
       });
     }
   };
@@ -103,13 +110,6 @@ export function saveGame(game){
 }
 
 //To Reducers
-export function requestGames(status) {
-  return {
-    type: actionTypes.REQUEST_GAMES,
-    status
-  };
-}
-
 export function loadGamesSuccess(games, slug) {
   return {
     type: actionTypes.LOAD_GAMES_SUCCESS,
