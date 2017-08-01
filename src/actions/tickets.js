@@ -7,9 +7,16 @@ const ref = firebase.db.ref('tickets');
 export function loadTickets(team){
   return function(dispatch) {
     dispatch(requestTickets);
-    ref.orderByChild('home_team').equalTo(team).on('value', function(snapshot) {
-      dispatch(loadTicketsSuccess(Object.values(snapshot.val())));
-    });
+    if(team) {
+      ref.orderByChild('home_team').equalTo(team).on('value', function(snapshot) {
+        dispatch(loadTicketsSuccess(Object.values(snapshot.val())));
+      });
+    } else {
+      ref.orderByChild('home_team').on('value', function(snapshot) {
+        dispatch(loadTicketsSuccess(Object.values(snapshot.val())));
+      });
+    }
+
   };
 }
 

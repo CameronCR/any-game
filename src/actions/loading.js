@@ -1,1 +1,7 @@
-export function setLoading(){}
+export function isLoading(level) {
+
+}
+
+export function notLoading(level) {
+
+}

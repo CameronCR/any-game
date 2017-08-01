@@ -14,7 +14,8 @@ class List extends Component {
     return (
       <ListPreview item={item}
                    key={index}
-                   handleClick={handleClick} />
+                   handleClick={handleClick}
+                   previewName={this.props.previewName}/>
     );
   }
 
@@ -36,7 +37,8 @@ List.propTypes = {
 };
 
 List.defaultProps = {
-  preview: 'ListPreview'
+  preview: 'ListPreview',
+  previewName: 'name'
 };
 
 export default List;

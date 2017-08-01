@@ -54,7 +54,7 @@ class Games extends Component {
                          moreGames={this.moreGames}
                          isLocal />
       );
-    } else if(this.props.games.team != undefined && this.props.games.gamesArray.length == 0) {
+    } else if(this.props.games.team != (undefined && 'all') && this.props.games.gamesArray.length == 0) {
       return (
         <div className="col-md-4">
           <div className="alert alert-warning" role="alert">No games found.</div>
