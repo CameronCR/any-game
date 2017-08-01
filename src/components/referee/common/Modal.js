@@ -20,7 +20,7 @@ function Modal(props) {
               <ModalForm {...props} />
             </div>
             <div className="modal-footer">
-              {deleteButton(props.item.name, props.deleteButton)}
+              {deleteButton(props.item[props.deleteCondition], props.deleteButton)}
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={props.saveButton}>Save</button>
             </div>
@@ -37,6 +37,10 @@ Modal.propTypes = {
   }).isRequired,
   modalTitle: PropTypes.string.isRequired,
   modalForm: PropTypes.func.isRequired
+};
+
+Modal.defaultProps = {
+  deleteCondition: 'name'
 };
 
 export default Modal;

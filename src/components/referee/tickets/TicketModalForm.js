@@ -42,6 +42,32 @@ function TicketModalForm(props) {
                      value={props.item.game_id} />
             </div>
           </div>
+          <div className="row">
+            <div className="col-md-6">
+              <label>Sport</label>
+              <select name="sport"
+                      className="form-control"
+                      onChange={props.onChange}
+                      value={props.item.sport} >
+                <option value="">Select a Sport</option>
+                {props.sports.map((option) => {
+                  return <option key={option.name} value={option.name}>{option.name}</option>;
+                })}
+              </select>
+            </div>
+            <div className="col-md-6">
+              <label>Team</label>
+              <select name="team"
+                      className="form-control"
+                      onChange={props.onChange}
+                      value={props.item.team} >
+                <option value="">Select a Team</option>
+                {props.teams.map((option) => {
+                  return <option key={option.name} value={option.name}>{option.name}</option>;
+                })}
+              </select>
+            </div>
+          </div>
         </div>
       </form>
     </div>

@@ -46,7 +46,8 @@ class Games extends Component {
   }
 
   gamesList(){
-    if(this.props.games.isFetching) {
+    let loadingState  = this.props.loading;
+    if(loadingState) {
       return <RefereeLoading heightOffset="20" />;
     } else if(this.props.games.length != 0 && this.props.games.gamesArray.length > 0) {
       return (<GamesList list={this.props.games.gamesArray}

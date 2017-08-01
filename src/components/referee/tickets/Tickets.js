@@ -49,9 +49,12 @@ class Tickets extends Component {
 
   updateFormState(event) {
     const field = event.target.name;
-    let ticket = this.state.team;
+    let ticket = this.state.ticket;
     ticket[field] = event.target.value;
     this.setState({ticket: ticket});
+    if(field == 'sport') {
+      this.props.teamActions.loadTeamsBySport(event.target.value);
+    }
   }
 
   setTicket(ticket) {
@@ -120,7 +123,8 @@ class Tickets extends Component {
                  modalForm={TicketModalForm}
 
                  sports={this.props.sports}
-                 venues={this.props.venues} />
+                 teams={this.props.teams}
+                  />
           <br />
           <List list={this.props.tickets.ticketsArray}
                 setItem={this.setTicket}
