@@ -7,6 +7,7 @@ import * as teamActions from '../../../actions/teams';
 
 import RefereeLoading from '../RefereeLoading';
 import GamesList from './GamesList';
+import SelectTeam from '../common/SelectTeam';
 
 class LoadGames extends Component {
   constructor(props) {
@@ -68,18 +69,8 @@ class LoadGames extends Component {
         <h1>Load Games Admin</h1>
         <div className="col-md-3">
           {this.state.error ? <div className="alert alert-warning" role="alert">{this.state.errorMessage}</div> : <div></div>}
-          <select name="sport"
-                  className="form-control"
-                  onChange={this.getGames} >
-            <option value="all">Pick Team</option>
-            {this.props.teams.map((option) => {
-              if(option.slug) {
-                return <option key={option.name} value={option.slug}>{option.name}</option>;
-              } else {
-                return <option key={option.name} value="no-slug">{option.name}</option>;
-              }
-            })}
-          </select>
+          <SelectTeam getGames={this.getGames}
+                      teams={this.props.teams} />
           <br />
         </div>
         {this.gamesList()}

@@ -7,6 +7,7 @@ import * as teamActions from '../../../actions/teams';
 
 import RefereeLoading from '../RefereeLoading';
 import GamesList from './GamesList';
+import SelectTeam from '../common/SelectTeam';
 
 class Games extends Component {
   constructor(props) {
@@ -17,7 +18,6 @@ class Games extends Component {
     };
     this.props.teamActions.loadTeams();
     this.filterGames = this.filterGames.bind(this);
-    this.moreGames = this.moreGames.bind(this);
     this.createGame = this.createGame.bind(this);
     this.reloadGames = this.reloadGames.bind(this);
     this.props.gameActions.loadGames(false);
@@ -38,11 +38,6 @@ class Games extends Component {
 
   reloadGames(event) {
     this.props.gameActions.loadGames(event.target.checked);
-  }
-
-  moreGames(event){
-    event.preventDefault();
-    this.props.gameActions.loadGamesForTeamAfterDate(this.props.settings.settings.seatGeek, this.props.games);
   }
 
   gamesList(){
@@ -81,13 +76,20 @@ class Games extends Component {
         <div className="col-md-3">
           {this.state.error ? <div className="alert alert-warning" role="alert">{this.state.errorMessage}</div> : <div></div>}
         </div>
-        <div className="col-md-3">
-          <label className="custom-control custom-checkbox">
-            <input type="checkbox" className="custom-control-input" onChange={this.reloadGames} />
-            <span className="custom-control-indicator"></span>
-            <span className="custom-control-description">View only future games</span>
-          </label>
+        <div className="row">
+          <div className="col-md-3">
+            <SelectTeam getGames={this.getGames}
+                        teams={this.props.teams} />
+          </div>
+          <div className="col-md-3">
+            <label className="custom-control custom-checkbox">
+              <input type="checkbox" className="custom-control-input" onChange={this.reloadGames} />
+              <span className="custom-control-indicator"></span>
+              <span className="custom-control-description">View only future games</span>
+            </label>
+          </div>
         </div>
+        <br />
         {this.gamesList()}
       </div>
     );
