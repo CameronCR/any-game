@@ -18,7 +18,8 @@ class GameList extends Component {
     return (
       <GameCard key={index}
                 game={item}
-                handleClick={handleClick} />
+                handleClick={handleClick}
+                buttonText={this.props.buttonText} />
     );
   }
 
@@ -63,8 +64,12 @@ class GameList extends Component {
 }
 
 GameList.propTypes = {
-  list: PropTypes.array.isRequired,
+  list: PropTypes.array.isRequired
   //setItem: PropTypes.func.isRequired
+};
+
+GameList.defaultProps = {
+  buttonText: 'Open'
 };
 
 export default GameList;

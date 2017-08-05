@@ -47,7 +47,8 @@ class LoadGames extends Component {
     } else if(this.props.games.length != 0 && this.props.games.gamesArray.length > 0) {
       return (<GamesList list={this.props.games.gamesArray}
                          setItem={this.createGame}
-                         moreGames={this.moreGames} />
+                         moreGames={this.moreGames}
+                         buttonText="Load Game" />
       );
     } else if(this.props.games.team != undefined && this.props.games.gamesArray.length == 0) {
       return (
