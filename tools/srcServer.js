@@ -32,6 +32,7 @@ app.listen(port, function(err) {
   if (err) {
     console.log(err);
   } else {
-    open(`http://localhost:${port}`);
+    open(`http://localhost:${port}/referee`, 'google chrome');
+    open(`http://localhost:${port}`, 'google chrome');
   }
 });
