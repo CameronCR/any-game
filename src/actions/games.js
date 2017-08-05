@@ -17,6 +17,32 @@ function sortGamesByDayAndDispatch(snapshot, dispatch){
   dispatch(loadGamesSuccess(games));
 }
 
+function cleanUpGame(game) {
+  delete game.announce_date;
+  delete game.created_at;
+  delete game.date_tbd;
+  delete game.datetime_rbd;
+  delete game.is_open;
+  delete game.time_tbd;
+  delete game.url;
+  delete game.visible_until_utc;
+
+  let gameVenue = game.venue;
+  delete gameVenue.url;
+  gameVenue.name = gameVenue.name_v2;
+  delete gameVenue.name_v2;
+  delete gameVenue.has_upcoming_events;
+
+  game.performers.map((team) => {
+    delete team.url;
+    delete team.stats;
+    delete team.primary;
+    delete team.num_upcoming_events;
+  });
+
+  return game;
+}
+
 //Actions
 export function loadGamesFromServer(settings, slug){
   let auth = {
@@ -90,6 +116,7 @@ export function loadGamesForTeamAfterDate(settings, prevResponseData){
 
 export function saveGame(game){
   let postKey;
+  cleanUpGame(game);
   return function(dispatch) {
     ref.orderByChild('id').equalTo(game.id).once('value', function(snapshot) {
       let exists = (snapshot.val() !== null);
