@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { formatDate } from '../../../lib/utilities';
+
 function TicketModalForm(props) {
   return (
     <div className="col-md-12">
@@ -33,14 +35,6 @@ function TicketModalForm(props) {
                      onChange={props.onChange}
                      value={props.item.date} />
             </div>
-            <div className="col-md-6">
-              <label>Game ID</label>
-              <input name="game_id"
-                     type="text"
-                     className="form-control"
-                     onChange={props.onChange}
-                     value={props.item.game_id} />
-            </div>
           </div>
           <div className="row">
             <div className="col-md-6">
@@ -51,7 +45,7 @@ function TicketModalForm(props) {
                       value={props.item.sport} >
                 <option value="">Select a Sport</option>
                 {props.sports.map((option) => {
-                  return <option key={option.name} value={option.name}>{option.name}</option>;
+                  return <option key={option.name} value={option.acronym.toLowerCase()}>{option.name}</option>;
                 })}
               </select>
             </div>
@@ -63,7 +57,21 @@ function TicketModalForm(props) {
                       value={props.item.team} >
                 <option value="">Select a Team</option>
                 {props.teams.map((option) => {
-                  return <option key={option.name} value={option.name}>{option.name}</option>;
+                  return <option key={option.slug} value={option.slug}>{option.name}</option>;
+                })}
+              </select>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6">
+              <label>Game</label>
+              <select name="sport"
+                      className="form-control"
+                      onChange={props.onChange}
+                      value={props.item.game} >
+                <option value="">Select a Game</option>
+                {props.games.map((option) => {
+                  return <option key={option.id} value={option.id}>{option.short_title} - {formatDate(option.datetime_local)}</option>;
                 })}
               </select>
             </div>

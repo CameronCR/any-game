@@ -11,9 +11,8 @@ function ListPreview(props) {
 }
 
 ListPreview.propTypes = {
-  item: PropTypes.shape({
-    name: PropTypes.string.isRequired
-  }).isRequired
+  item: PropTypes.object.isRequired,
+  previewName: PropTypes.string.isRequired
 };
 
 

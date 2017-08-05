@@ -59,6 +59,27 @@ export function loadGames(onlyFuture){
   };
 }
 
+export function loadGamesByTeam(team){
+  return function(dispatch) {
+    dispatch(loadingActions.isLoading('games'));
+    ref.orderByChild('datetime_local').on('value', function(snapshot) {
+      sortGamesByDayAndDispatch(snapshot, dispatch);
+      dispatch(loadingActions.notLoading('games'));
+    });
+  };
+}
+
+export function loadGamesBySport(sport){
+  return function(dispatch) {
+    dispatch(loadingActions.isLoading('games'));
+    ref.orderByChild('type').equalTo(sport).on('value', function(snapshot) {
+      sortGamesByDayAndDispatch(snapshot, dispatch);
+      dispatch(loadingActions.notLoading('games'));
+    });
+  };
+}
+
+
 export function clearLoaded(){
   return function(dispatch) {
     let arr = [];

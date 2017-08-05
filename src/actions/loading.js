@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-export function isLoading(level) {
-
-}
-
-export function notLoading(level) {
-
-=======
 import * as actionTypes from './actionTypes';
 
 //Actions
@@ -31,5 +23,4 @@ function setLoading(loadingState) {
     type: actionTypes.LOADING_STATES,
     loadingState
   };
->>>>>>> master
 }
