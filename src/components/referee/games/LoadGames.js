@@ -17,7 +17,6 @@ class LoadGames extends Component {
     };
     this.props.teamActions.loadTeams();
     this.getGames = this.getGames.bind(this);
-    this.moreGames = this.moreGames.bind(this);
     this.createGame = this.createGame.bind(this);
     this.props.gameActions.clearLoaded();
   }
@@ -36,18 +35,12 @@ class LoadGames extends Component {
     }
   }
 
-  moreGames(event){
-    event.preventDefault();
-    this.props.gameActions.loadGamesForTeamAfterDate(this.props.settings.settings.seatGeek, this.props.games);
-  }
-
   gamesList(){
     if(this.props.games.isFetching) {
       return <RefereeLoading heightOffset="20" />;
     } else if(this.props.games.length != 0 && this.props.games.gamesArray.length > 0) {
       return (<GamesList list={this.props.games.gamesArray}
                          setItem={this.createGame}
-                         moreGames={this.moreGames}
                          buttonText="Load Game" />
       );
     } else if(this.props.games.team != undefined && this.props.games.gamesArray.length == 0) {

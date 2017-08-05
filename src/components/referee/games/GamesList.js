@@ -10,7 +10,6 @@ class GameList extends Component {
     super(props);
     this.previewListing = this.previewListing.bind(this);
     this.title = this.title.bind(this);
-    this.moreGames = this.moreGames.bind(this);
   }
 
   previewListing(item, index){
@@ -31,24 +30,6 @@ class GameList extends Component {
     }
   }
 
-  moreGames(){
-    if(!this.props.isLocal) {
-      return (
-        <div className="card" style={{width: '20rem', margin: '10px'}}>
-          <div className="card-block">
-            <br />
-            <br />
-            <a href="#"
-               onClick={this.props.moreGames}
-               style={{marginRight: 'auto', marginLeft: 'auto', display: 'block'}}
-               className="col-md-8 btn btn-outline-primary">Load More Games</a>
-            <br />
-            <br />
-          </div>
-        </div>
-      );
-    }
-  }
 
   render() {
     return (
@@ -56,7 +37,6 @@ class GameList extends Component {
         {this.title()}
         <div className="row">
           {this.props.list.map(this.previewListing)}
-          {this.moreGames()}
         </div>
       </div>
     );

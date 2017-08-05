@@ -49,7 +49,7 @@ export function loadGamesFromServer(settings, slug){
     username: settings.clientId,
     password: settings.secret
   };
-  let url = "https://api.seatgeek.com/2/events?";
+  let url = "https://api.seatgeek.com/2/events?per_page=200&";
   url = url + "performers.slug=" + slug;
   let requestData = {
     url: url,
