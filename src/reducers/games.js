@@ -4,18 +4,15 @@ export default function games(state = [], action) {
   switch(action.type) {
 
     case actionTypes.LOAD_GAMES_SUCCESS:
-      return {gamesArray: action.games, isFetching: false, team: action.team};
+      return {gamesArray: action.games, isFetching: false};
 
     case actionTypes.ADD_GAMES_SUCCESS: {
       let games = state.gamesArray.concat(action.games);
-      return {gamesArray: games, isFetching: false, team: state.team};
+      return {gamesArray: games, isFetching: false};
     }
 
-    case actionTypes.CREATE_GAME_SUCCESS:
-      return state;
-
     case actionTypes.REQUEST_GAMES:
-      return { gamesArray: state.gamesArray, isFetching: action.status, team: state.team };
+      return { gamesArray: state.gamesArray, isFetching: action.status};
 
     default:
       return state;

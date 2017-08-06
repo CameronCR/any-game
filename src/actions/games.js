@@ -9,7 +9,7 @@ import * as loadingActions from './loading';
 const ref = firebase.db.ref('games');
 
 //Utility
-function sortGamesByDayAndDispatch(snapshot, dispatch){
+function sortGamesByDayAndDispatch(snapshot, dispatch, slug){
   let games = [];
   snapshot.forEach(function(child) {
     games.push(child.val());
@@ -60,7 +60,7 @@ export function loadGamesFromServer(settings, slug){
     dispatch(loadingActions.isLoading('games'));
     axios.get(requestData.url, requestData.settings).then((response) => {
       let data = response.data.events;
-      dispatch(loadGamesSuccess(data, slug));
+      dispatch(loadGamesSuccess(data));
       dispatch(loadingActions.notLoading('games'));
     });
   };
@@ -127,9 +127,10 @@ export function saveGame(game){
       }
       firebase.db.ref('games/' + postKey).update(game, function(error) {
         if (error) {
-          dispatch(createGameSuccess(false));
+          //dispatch(createGameSuccess(false));
         } else {
-          dispatch(createGameSuccess(true));
+          window.alert('Loaded');
+          //dispatch(createGameSuccess(true));
         }
       });
     });
@@ -137,10 +138,9 @@ export function saveGame(game){
 }
 
 //To Reducers
-export function loadGamesSuccess(games, slug) {
+export function loadGamesSuccess(games) {
   return {
     type: actionTypes.LOAD_GAMES_SUCCESS,
-    team: slug,
     games
   };
 }

@@ -8,17 +8,28 @@ import * as teamActions from '../../../actions/teams';
 import RefereeLoading from '../RefereeLoading';
 import GamesList from './GamesList';
 import SelectTeam from '../common/SelectTeam';
+import Modal from '../common/Modal';
+import GameModalForm from './GameModalForm';
+
+const gameObj = {
+  shortTitle: '',
+  name: ''
+};
 
 class Games extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: false,
-      errorMessage: ''
+      errorMessage: '',
+      game: gameObj,
+      modalTitle: 'Create Game'
     };
     this.props.teamActions.loadTeams();
     this.filterGames = this.filterGames.bind(this);
     this.createGame = this.createGame.bind(this);
+    this.updateFormState = this.updateFormState.bind(this);
+    this.removeGame = this.removeGame.bind(this);
     this.reloadGames = this.reloadGames.bind(this);
     this.props.gameActions.loadGames(false);
   }
@@ -69,6 +80,14 @@ class Games extends Component {
     this.props.gameActions.saveGame(game);
   }
 
+  updateFormState(){
+
+  }
+
+  removeGame() {
+
+  }
+
   render() {
     return (
       <div>
@@ -81,6 +100,13 @@ class Games extends Component {
             <SelectTeam getGames={this.getGames}
                         teams={this.props.teams} />
           </div>
+          <Modal item={this.state.game}
+                 modalTitle={this.state.modalTitle}
+                 onChange={this.updateFormState}
+                 deleteButton={this.removeGame}
+                 saveButton={this.createGame}
+                 modalForm={GameModalForm} />
+
           <div className="col-md-3">
             <label className="custom-control custom-checkbox">
               <input type="checkbox" className="custom-control-input" onChange={this.reloadGames} />

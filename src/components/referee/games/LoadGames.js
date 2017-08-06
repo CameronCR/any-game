@@ -36,6 +36,10 @@ class LoadGames extends Component {
     }
   }
 
+  createGame(game){
+    this.props.gameActions.saveGame(game);
+  }
+
   gamesList(){
     if(this.props.games.isFetching) {
       return <RefereeLoading heightOffset="20" />;
@@ -57,10 +61,6 @@ class LoadGames extends Component {
         </div>
       );
     }
-  }
-
-  createGame(game){
-    this.props.gameActions.saveGame(game);
   }
 
   render() {
